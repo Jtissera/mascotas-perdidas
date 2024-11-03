@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <div id="home_content">
+        <div id="left_home">
+            <h1 id="home_title">Te ayudamos a encontrar a tu mascota!</h1>
+            <h3 id="home_subtitle">Has perdido a tu mascota o encontrado la mascota perdida de alguien, esta aplicacion web esta aqui para ayudar a las mascotas a reencontrarse con sus hogares.</h3>
+            <div id="buttons_container">
+                <a class="home_button" href="">Perdí a mi mascota</a>
+                <a class="home_button" href="">Encontre una mascota</a>
+            </div>
+        </div>
+        <div id="right_home">
+            <div id="container_home_image2">
+                <img id="home_image2" src="{{url_for('static',filename='images/mascota3.webp')}}" alt="">
+            </div>
+            <div id="container_home_image1">
+                <img id="home_image1" src="{{url_for('static',filename='images/mascota4.webp')}}" alt="">
+            </div>
+        </div>
+    </div>
+{% endblock %}
