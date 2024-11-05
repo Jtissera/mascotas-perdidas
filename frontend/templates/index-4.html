@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title%}About {% endblock %}
+{% block body %}
+
+
+
+<!--content-->
+<div class="container">
+    <div class="row">
+        <article class="span12">
+            <figure class="map">
+                <iframe src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Brooklyn,+New+York,+NY,+United+States&amp;aq=0&amp;sll=37.0625,-95.677068&amp;sspn=61.282355,146.513672&amp;ie=UTF8&amp;hq=&amp;hnear=Brooklyn,+Kings,+New+York&amp;ll=40.649974,-73.950005&amp;spn=0.01628,0.025663&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+            </figure>
+        </article>
+    </div>
+</div>
+<div class="container padBot4">
+    <div class="row">
+        <article class="span4">
+            <h2>Address</h2>
+            <div class="info">
+                <p>8901 Marmora Road, Glasgow, D04 89GR.</p>
+                <p><span>Freephone:</span>+1 959 603 6035</p>
+                <p><span>FAX:</span>+1 504 889 9898</p>
+                <p>E-mail: <a href="#">mail@demolink.org</a></p>
+            </div>
+            <div class="info marg">
+                <p>9867 Mill Road, Cambridge, MG09 99HT</p>
+                <p><span>Freephone:</span>+1 959 603 6035</p>
+                <p><span>FAX:</span>+1 504 889 9898</p>
+                <p>E-mail: <a href="#">mail@demolink.org</a></p>
+            </div>
+        </article>
+        <article class="span8">
+            <h2>Contact form</h2>
+            <form id="contact-form">
+                <div class="success"> Contact form submitted! <strong>We will be in touch soon.</strong> </div>
+                <fieldset>
+                    <div>
+                        <div class="form-div-1">
+                            <label class="name">
+                            <input type="text" value="Name:">
+                            <br>
+                            <span class="error">*This is not a valid name.</span> <span class="empty">*This field is required.</span> </label>
+                        </div>
+                        <div class="form-div-2">
+                            <label class="email">
+                            <input type="email" value="E-mail:">
+                            <br>
+                            <span class="error">*This is not a valid email address.</span> <span class="empty">*This field is required.</span> </label>
+                        </div>
+                        <div class="form-div-3">
+                            <label class="phone">
+                            <input type="tel" value="Phone:">
+                            <br>
+                            <span class="error">*This is not a valid phone number.</span> <span class="empty">*This field is required.</span> </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="message">
+                        <textarea>Message:</textarea>
+                        <br>
+                        <span class="error">*The message is too short.</span> <span class="empty">*This field is required.</span>
+                        </label>
+                    </div>
+                    <div class="btns">
+                        <a href="#" data-type="submit" class="btn btn-link">Submit<em class="icon-double-angle-right">&nbsp;</em></a>
+                    </div>
+                </fieldset>
+            </form>
+        </article>
+    </div>
+</div>
+
+{% endblock %}
