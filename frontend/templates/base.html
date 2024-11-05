@@ -1,18 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Title{% endblock %}</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<title>{% block title %} {% endblock %}</title>
+<meta charset="utf-8">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+<meta name="description" content="Your description">
+<meta name="keywords" content="Your keywords">
+<meta name="author" content="Your name">
+<meta name = "format-detection" content = "telephone=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!--CSS-->
+<link rel="stylesheet" href="{{url_for('static', filename ='css/bootstrap.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename ='css/responsive.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename ='css/style.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename ='css/touchTouch.css')}}">
+<link rel="stylesheet" href="font/font-awesome.css">
+
 </head>
 <body>
-    <nav id="navbar">Aqui va el navbar</nav>
-    <div id="content">
-        {% block content %} {% endblock %}
+<div class="global">
+<!--header-->
+<header>
+    <div class="upbox">
+        <div class="container">
+            <div class="row">
+                <article class="span12">
+                    <p>You have not yet registered to our club? <a href="#">Login</a> or <a href="#" class="white">Register</a></p>
+                </article>
+            </div>
+        </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <article class="span12">
+                <h1 class="brand"><a href="{{url_for('index')}}"><img src="{{url_for('static', filename ='images/petcare.jpg')}}" alt=""></a></h1>
+                <div class="navbar navbar_ clearfix">
+                    <div class="navbar-inner">      
+                        <div class="clearfix">
+                            <div class="nav-collapse nav-collapse_">
+                                <ul class="nav sf-menu clearfix">
+                                    <li class="active"><a href="{{url_for('index')}}">Home<em></em><strong></strong></a></li> 
+                                    <li class="sub-menu"><a href="{{url_for('index_1')}}">About<span></span><em></em><strong></strong></a>
+                                        <ul class="submenu">
+                                            <li><a href="#">Excepteur sint occaecat</a></li>
+                                            <li><a href="#">Cupidatat non</a></li>
+                                            <li><a href="#">Proident sunt in culpa</a></li>
+                                        </ul>
+                                    </li> 
+                                    <li><a href="{{url_for('index_2')}}">Supplies<em></em><strong></strong></a></li>
+                                    <li><a href="{{url_for('index_3')}}">Our Staff<em></em><strong></strong></a></li>
+                                    <li><a href="{{url_for('index_4')}}">Contacts<em></em><strong></strong></a></li>                  
+                                </ul>
+                            </div>                                                                                                                
+                        </div>
+                    </div>  
+                </div>
+            </article>
+        </div>
+    </div>
+</header>
+<body>
+    {% block body %}
+
+    {% endblock %}
+</body>
+<section class="follow-box">
+    <div class="container">
+        <div class="row">
+            <article class="span12">
+                <h2>Follow us</h2>
+                <div class="row">
+                    <ul class="follow">
+                        <li class="span4">
+                            <figure><img src="{{url_for('static', filename ='images/facebook.png')}}" alt=""></figure>
+                            <a href="#">Facebook</a>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempo.</p>
+                        </li>
+                        <li class="span4">
+                            <figure><img src="{{url_for('static', filename ='images/gorjeo.png')}}" alt=""></figure>
+                            <a href="#">Twitter</a>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempo.</p>
+                        </li>
+                        <li class="span4">
+                            <figure><img src="{{url_for('static', filename ='images/youtube.png')}}" alt=""></figure>
+                            <a href="#">You Tube</a>
+                            <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempo.</p>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+</div>
+<!--footer-->
+<footer>
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <article class="span12">
+                    <p>Dog Club &copy; 2013. <a href="{{url_for('index_5')}}">Privacy Policy</a></p>
+                </article>
+            </div>
+        </div> 
+    </div>  
+</footer>
+
 </body>
 </html>
