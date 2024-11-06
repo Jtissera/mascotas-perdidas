@@ -1296,14 +1296,15 @@ header p {
 }
 .slider {
 	width: 100%;
-	background: #fdfdfd url(../img/dog-box_bg.png) 0 bottom repeat-x;
+	background: #EAE6DF url(../img/dog-box_bg.png) 0 bottom repeat-x;
 	padding-bottom: 108px;
 }
 .slider .title1 {
-	font: 300 84px "Open Sans", Arial, Helvetica, sans-serif;
+	font: 600 94px "Open Sans", Arial, Helvetica, sans-serif;
 	line-height: 1em;
-	color: #7f7f7f;
-	margin-top: 136px;
+	margin-top: 0;
+	margin-bottom: 24px;
+	color: #5F4F42 !important;
 }
 .slider .title2 {
 	font: 600 71px "Open Sans", Arial, Helvetica, sans-serif;
@@ -1340,9 +1341,9 @@ header p {
 	width: 100%;
 }
 .dog-holder .title1 {
-	font: 300 94px "Open Sans", Arial, Helvetica, sans-serif;
+	font: 600 94px "Open Sans", Arial, Helvetica, sans-serif;
 	line-height: 1em;
-	color: #7f7f7f;
+	color: #5F4F42;
 	margin-top: 0;
 	margin-bottom: 24px;
 }
@@ -1350,7 +1351,7 @@ header p {
 	padding-bottom: 71px;
 }
 .about-box, .follow-box {
-	background: #fdfdfd;
+	background: #E1D8CB;
 	-webkit-box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.1);
 	box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.1);
@@ -1800,6 +1801,7 @@ footer a:hover {
 }
  .slider .title1 {
  font-size: 94px;
+ color: #7f7f7f;
 }
  h2 {
  font-size: 94px;
@@ -2287,6 +2289,8 @@ footer a:hover {
 }
 .margBot {
 	margin-bottom: 36px;
+	font-weight: 800;
+	color: #776F63;
 }
 .margBot1 {
 	margin-bottom: 32px;
