@@ -22,6 +22,9 @@ def encontre_una_mascota():
 def homeV1():
     return render_template("homeV1.html")
 
+@app.route("/faq")
+def faq():
+    return render_template("faq.html")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5050)
