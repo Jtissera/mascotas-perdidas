@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title%}Perdi mi mascota{% endblock %}
+{% block body %}
+<div id="content_perdi">
+    <div id="map_container">
+        <figure id="figure_map">
+            <iframe id="map" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Brooklyn,+New+York,+NY,+United+States&amp;aq=0&amp;sll=37.0625,-95.677068&amp;sspn=61.282355,146.513672&amp;ie=UTF8&amp;hq=&amp;hnear=Brooklyn,+Kings,+New+York&amp;ll=40.649974,-73.950005&amp;spn=0.01628,0.025663&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+        </figure>
+    </div>
+    <div id="form_container">
+        <form id="form" action="">
+            <div id="input_container">
+                <label for="raza"></label>
+                <input class="input_perdi" type="text" id="raza" name="fraza" placeholder="Raza:">
+        
+                <label for="color"></label>
+                <input class="input_perdi" type="text" id="color" name="fcolor" placeholder="Color:">
+        
+                <label for="zona"></label>
+                <input class="input_perdi" type="text" id="zona" name="fzona" placeholder="Zona:">
+        
+                <label for="foto"></label>
+                <input class="input_perdi" type="image" id="image" name="fimage" placeholder="Imagen:" value="Imagen">
+        
+                <label for="email"></label>
+                <input class="input_perdi" type="email" id="email" name="femail" placeholder="Email:">
+        
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
