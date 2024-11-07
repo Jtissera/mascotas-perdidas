@@ -1,60 +1,104 @@
 {% extends "base.html" %}
-{% block title%}Help {% endblock %}
+{% block title %}Help{% endblock %}
 {% block body %}
-<h1 id = "como_funciona_title">Como Funciona</h1>
-<div class="como_funciona_bloque">
-    <div class="como_funciona_subtitle">
-      <h1>Cargar una mascota perdida</h1>
-    </div>
-    <div class="como_funciona_text">
-      <p>Puedes cargar datos de la mascota perdida, como raza, color, la ubicación en 
-        la cual fue vista por última vez, fotos y un numero de telefono para que puedan
-        comunicarse contigo.</p>
-    </div>
-    <br>
-    <div class="como_funciona_subtitle">
-        <h1>Perdi a mi mascota</h1>
-      </div>
-      <div class="como_funciona_text">
-        <p>Dentro de "Cargar mascota perdida", podras cargar los datos de tu mascota 
-            perdida y poder hallarla.</p>
-      </div>
-    <br>
-    <div class="como_funciona_subtitle">
-        <h1>Encontre una mascota</h1>
-      </div>
-      <div class="como_funciona_text">
-        <p>Otra opcion es "Encontre una mascota", en caso de que hayas encontrado una mascota perdida, puedes 
-           subir los datos y dar con su duenio.</p>
-      </div>
-  </div>
 
-<h2 id = "faq_title">FAQs</h2>
-<div class="faq_bloque">
-    <div class="faq_subtitle">
-        <h2>Que datos puedo cargar si encontre una mascota?</h2>
-    </div>
-        <div class="faq_text">
-        <p>En caso de hallar una mascota, recomendamos publicar informacion como la raza. 
-           el color, alguna marca distintiva o si tiene algun accesorio como un collar</p>
-        </div>
-    <br>
-    <div class="faq_subtitle">
-        <h2>Hay un limite para cargar mascotas?</h2>
-    </div>
-        <div class="faq_text">
-        <p>No, no hay un limite para cargar mascotas.</p>
-        </div>
-    <br>
-    <div class="faq_subtitle">
-        <h2>Hasta que horario funciona la pagina web?</h2>
-    </div>
-        <div class="faq_text">
-        <p>La pagina siempre esta en funcionamiento, en caso de mantenimiento aparecera un 
-            mensaje informandolo.</p>
-        </div>
-</div>
+    <h1 id="como_funciona_title">Cómo Funciona</h1>
 
+    <div class="como_funciona_bloque">
+        <div class="como_funciona_subtitle">
+            <h2>Cargar una Mascota Perdida</h2>
+        </div>
+        <div class="como_funciona_text">
+            <p>Para cargar una mascota perdida, ingresa los detalles más importantes como:</p>
+            <ul>
+                <li><strong>Raza</strong>: Especifica la raza o una descripción general si es desconocida.</li>
+                <li><strong>Color</strong>: Ayuda a los demás a identificarla rápidamente.</li>
+                <li><strong>Ubicación</strong>: Indica el lugar donde fue vista por última vez.</li>
+                <li><strong>Fotos</strong>: Las imágenes claras ayudan mucho a la identificación.</li>
+                <li><strong>Contacto</strong>: Deja un número de teléfono para que los posibles halladores puedan comunicarse contigo.</li>
+            </ul>
+        </div>
+    </div>
     
+    <br>
+
+    <div class="como_funciona_bloque">
+        <div class="como_funciona_subtitle">
+            <h2>Perdí a mi Mascota</h2>
+        </div>
+        <div class="como_funciona_text">
+            <p>Si perdiste tu mascota, simplemente ingresa sus datos en la sección de "Cargar Mascota Perdida". Asegúrate de:</p>
+            <ul>
+                <li><strong>Actualizar tu ubicación</strong>: La información precisa aumenta las probabilidades de encontrarla.</li>
+                <li><strong>Incluir una descripción detallada</strong>: Cualquier detalle específico como marcas o particularidades puede ser útil.</li>
+                <li><strong>Revisar otras mascotas encontradas</strong>: Tal vez alguien haya visto a tu mascota y cargado su información en el sitio.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <br>
+
+    <div class="como_funciona_bloque">
+        <div class="como_funciona_subtitle">
+            <h2>Encontré una Mascota</h2>
+        </div>
+        <div class="como_funciona_text">
+            <p>Si encontraste una mascota, te recomendamos seguir estos pasos:</p>
+            <ul>
+                <li><strong>Sube una foto clara</strong> para que el dueño pueda reconocerla rápidamente.</li>
+                <li><strong>Incluye información relevante</strong>: Descripción, raza, color, características físicas y accesorios como collares o placas de identificación.</li>
+                <li><strong>Comunicarse de inmediato</strong>: No dudes en dar un número de contacto para facilitar la conexión con el dueño.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 id="faq_title">FAQs (Preguntas Frecuentes)</h2>
+
+    <div class="faq_bloque">
+        <div class="faq_subtitle">
+            <h3>¿Qué datos puedo cargar si encontré una mascota?</h3>
+        </div>
+        <div class="faq_text">
+            <p>Te sugerimos cargar los siguientes detalles:</p>
+            <ul>
+                <li><strong>Raza y color</strong>: Esto ayuda a los dueños a identificar a su mascota rápidamente.</li>
+                <li><strong>Accesorios</strong>: Si la mascota tiene collar, correa o cualquier accesorio distintivo, menciónalo.</li>
+                <li><strong>Ubicación donde la encontraste</strong>: Esto permite que los dueños tengan pistas de dónde buscar.</li>
+            </ul>
+        </div>
+        <br>
+
+        
+        <div class="faq_subtitle">
+            <h3>¿Hay un límite para cargar mascotas?</h3>
+        </div>
+        <div class="faq_text">
+            <p>No, no hay ningún límite. Puedes cargar tantas mascotas como quieras, tanto si las has encontrado como si las has perdido.</p>
+        </div>
+        <br>
+
+        <div class="faq_subtitle">
+            <h3>¿Hasta qué horario funciona la página web?</h3>
+        </div>
+        <div class="faq_text">
+            <p>La página está disponible 24/7. Sin embargo, en caso de mantenimiento, se mostrará un mensaje informándote de la interrupción.</p>
+        </div>
+        <br>
+
+        <div class="faq_subtitle">
+            <h3>¿Cómo puedo contactar al dueño de una mascota?</h3>
+        </div>
+        <div class="faq_text">
+            <p>Una vez que cargues los datos de la mascota encontrada o perdida, podrás agregar tu número de teléfono o correo electrónico para que las personas puedan contactarte directamente.</p>
+        </div>
+        <br>
+
+        <div class="faq_subtitle">
+            <h3>¿Cómo puedo actualizar la información de una mascota que encontré?</h3>
+        </div>
+        <div class="faq_text">
+            <p>Si has encontrado una mascota y tienes nueva información sobre ella, puedes actualizar la publicación accediendo a tu perfil y modificando los detalles.</p>
+        </div>
+    </div>
 
 {% endblock %}
