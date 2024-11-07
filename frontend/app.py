@@ -13,6 +13,11 @@ def perdi_mi_mascota():
     return render_template("perdi_mi_mascota.html")
 
 
+@app.route("/encontre_una_mascota")
+def encontre_una_mascota():
+    return render_template("encontre_una_mascota.html")
+
+
 @app.route("/")
 def homeV1():
     return render_template("homeV1.html")
