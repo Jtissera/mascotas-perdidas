@@ -16,7 +16,11 @@ El desarrollo de la aplicación utiliza diversas tecnologías para crear una exp
 - **Flask**: framework de Python utilizado para manejar el backend y el enrutamiento.
 - **SQL**: para gestionar la base de datos de mascotas y usuarios.
 - **JavaScript**: en algunas secciones de la interfaz para mejorar la interactividad.
-- **Google Maps**: para visualizar la ubicación de las mascotas extraviadas o encontradas, utilizando un iframe en la página correspondiente.
+- **Trello**: herramienta de gestión de proyectos utilizada para coordinar las tareas y el flujo de trabajo entre los miembros del equipo.
+- **Docker**: plataforma que se utiliza para crear contenedores y facilitar el despliegue y la administración del entorno de desarrollo, garantizando que todos los miembros del equipo trabajen en condiciones idénticas.
+- **Azure Studio**: herramienta utilizada para administrar la base de datos y la infraestructura de la aplicación, permitiendo gestionar y visualizar de manera más eficiente los datos almacenados en SQL.
+
+
 
 ## Estructura del Proyecto
 
@@ -48,12 +52,6 @@ Para el desarrollo y prueba de la aplicación *Mascotas Perdidas*, se utilizan d
 - **Google Maps API**:
   - Utilizada para integrar mapas en la aplicación. Permite visualizar la ubicación de las mascotas perdidas y encontradas. Para usarla, es necesario registrarse en Google Cloud Platform y obtener una clave API.
 
-- **Twilio API** (opcional):
-  - Si decides implementar notificaciones por SMS para usuarios que reportan mascotas perdidas o encontradas, Twilio ofrece una API sencilla para enviar y recibir mensajes de texto.
-
-- **Cloudinary** (opcional):
-  - Un servicio para gestionar y almacenar imágenes. Puede ser útil si planeas permitir a los usuarios subir fotos de mascotas perdidas o encontradas.
-
 ### Otras Herramientas
 
 - **GitHub**:
@@ -61,10 +59,6 @@ Para el desarrollo y prueba de la aplicación *Mascotas Perdidas*, se utilizan d
 
 - **Virtualenv**:
   - Herramienta para crear entornos virtuales en Python, lo que ayuda a evitar conflictos de dependencias y mantener un entorno limpio para el desarrollo.
-
-### Recomendaciones
-
-Es importante que los miembros del equipo se familiaricen con estas herramientas y servicios para mejorar el flujo de trabajo y la calidad del desarrollo. Cada uno de estos servicios requiere configuración adicional, así que asegúrate de revisar la documentación oficial para su correcta implementación.
 
 ## Instalación y Configuración
 
