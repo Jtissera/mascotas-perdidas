@@ -2,90 +2,38 @@
 {% block title%}Home{% endblock %}
 {% block body %}
 
-
-<section class="slider">
-    <div class="container">
-        <div class="row">
-            <article class="span4 dog-box">
-                <figure><img src="img/page1_pic1.jpg" alt=""></figure>
-            </article>
-            <article class="span8 pull-left">
-                <p class="title1">Perdiste a tu mascota?</p>
-                <p class="title2">Encuentrala <em>ahora!</em></p>
-                <p class="margBot">Si has perdido a tu mascota, no te preocupes. Estamos aquí para ayudarte a reunir a las familias con sus amigos peludos. Usa nuestra plataforma para reportar mascotas perdidas, buscar en la base de datos de animales encontrados, y recibir consejos útiles para mejorar las probabilidades de recuperar a tu querido compañero.</p>
-                <a href="#" class="btn btn-primary btn1">Perdi a mi mascota<em class="icon-double-angle-right"></em></a>
-            </article>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Barra de navegación</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="./index.html">Inicio</a>
+                <a class="nav-item nav-link" href="./faq.html">Cómo funciona</a>
+                <a class="nav-item nav-link" href="./upload.html">Cargar</a>
+                <a class="nav-item nav-link" href="./search.html">Buscar</a>
+            </div>
         </div>
-    </div>
-</section>
-<section class="dog-holder">
-    <div class="container">
-        <div class="row">
-            <article class="span5 dog-box">
-                <figure><img src="img/page1_pic2.jpg" alt=""></figure>
-            </article>
-            <article class="span7">
-                <p class="title1">Encontraste una mascota?</p>
-                <h4>Reporta una mascota perdida y ayuda a reunirla con su familia.</h4>
-                <p class="margBot">Si has encontrado una mascota, por favor proporciona detalles como su apariencia, lugar donde la encontraste, y cualquier otra información relevante. Esto nos ayudará a buscar a su dueño de manera más efectiva. Tu ayuda es crucial para que más mascotas regresen a casa.</p>
-                <a href="#" class="btn btn-primary btn2">Encontre una mascota<em class="icon-double-angle-right"></em></a>
-            </article>
+    </nav>
+    <section class="slider">
+        <div class="container">
+            <div class="row">
+                <article class="span4 dog-box">
+                    <figure><img src="img/page1_pic1.jpg" alt=""></figure>
+                </article>
+                <h1>¡Te ayudamos a encontrar a tu mascota!</h1>
+                <article class="span8 pull-left">
+                    <p class="margBot">¿Se te perdió tu mascota o encontraste una mascota
+                        que creés que está perdida?</p>
+                    <p class="margBot"></p>Esta aplicación web
+                    está acá para ayudar a las mascotas a que vuelvan a sus hogares.</p>
+            </div>
         </div>
-    </div>
-</section>
-<section class="about-box">
-    <div class="container">
-        <div class="row">
-            <article class="span6">
-                <h2>About</h2>
-                <p class="margBot">En nuestra plataforma, nos dedicamos a facilitar la conexión entre personas que han perdido a sus mascotas y quienes las han encontrado. Sabemos lo importante que es cada mascota en la vida de sus dueños, y por eso trabajamos arduamente para ofrecer un servicio rápido, confiable y accesible. Nuestra misión es asegurar que cada mascota perdida tenga la oportunidad de regresar a su hogar, colaborando con la comunidad, refugios y voluntarios. Creemos que juntos podemos marcar la diferencia y ayudar a muchas familias a reunirse con sus queridos compañeros.</p>
-                <a href="#" class="btn btn-primary btn3">Aprende mas<em class="icon-double-angle-right"></em></a>
-            </article>
-            <article class="span6">
-                <h2>Eventos</h2>
-                <ul class="list1">
-                    <li>
-                        <div class="pull-left"><i class="icon-comments-alt">&nbsp;</i></div>
-                        <div class="extra-wrap">
-                            <a href="#">Campaña de Adopción</a>
-                            <p>Únete a nuestra campaña de adopción y ayúdanos a encontrar hogares amorosos para mascotas rescatadas. Habrá actividades para toda la familia y asesoría sobre el proceso de adopción.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="pull-left"><i class="icon-user-md">&nbsp;</i></div>
-                        <div class="extra-wrap">
-                            <a href="#">Taller de Identificación de Mascotas</a>
-                            <p>Aprende cómo identificar una mascota perdida y los pasos que debes seguir para ayudarla a regresar a casa. Este taller es ideal para dueños de mascotas y personas interesadas en el rescate animal.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="pull-left"><i class="icon-heart-empty">&nbsp;</i></div>
-                        <div class="extra-wrap">
-                            <a href="#">Día de Voluntariado en Refugios</a>
-                            <p>Pasa un día como voluntario en un refugio de animales, ayudando a cuidar y socializar a las mascotas que están en espera de adopción. Contribuye a mejorar su calidad de vida mientras encuentran un hogar.</p>
-                        </div>
-                    </li>
-                </ul>
-            </article>
-        </div>
-    </div>
-</section>
-<section class="gallery-box">
-    <div class="container">
-        <div class="row">
-            <article class="span12">
-                <h2>Gallery</h2>
-                <div class="row">
-                    <article class="span4"><figure><a href="img/img1.jpg"><img src="img/page1_pic3.jpg" alt=""><strong class="icon-zoom-in"></strong></a></figure></article>
-                    <article class="span4"><figure><a href="img/img2.jpg"><img src="img/page1_pic4.jpg" alt=""><strong class="icon-zoom-in"></strong></a></figure></article>
-                    <article class="span4"><figure><a href="img/img3.jpg"><img src="img/page1_pic5.jpg" alt=""><strong class="icon-zoom-in"></strong></a></figure></article>
-                    <article class="span4"><figure><a href="img/img4.jpg"><img src="img/page1_pic6.jpg" alt=""><strong class="icon-zoom-in"></strong></a></figure></article>
-                    <article class="span4"><figure><a href="img/img5.jpg"><img src="img/page1_pic7.jpg" alt=""><strong class="icon-zoom-in"></strong></a></figure></article>
-                    <article class="span4"><figure><a href="img/img6.jpg"><img src="img/page1_pic8.jpg" alt=""><strong class="icon-zoom-in"></strong></a></figure></article>
-                </div>
-                <a href="#" class="btn btn-link">See all photos<em class="icon-double-angle-right">&nbsp;</em></a>
-            </article>
-        </div>
-    </div>
-</section>
+        <button type="button" class="btn btn-primary">Perdí a mi mascota</button>
+        <button type="button" class="btn btn-primary">Encontré una mascota</button>
+    </section>
+</body>
 {% endblock %}
