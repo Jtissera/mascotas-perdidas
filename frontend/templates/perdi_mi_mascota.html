@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block title%}Perdi mi mascota{% endblock %}
 {% block body %}
+<div id="title_perdi_container">
+    <h1 id="title_perdi">Carga los datos de tu mascota</h1>
+</div>
+
 <div id="content_perdi">
     <div id="map_container">
         <figure id="figure_map">
@@ -10,22 +14,31 @@
     <div id="form_container">
         <form id="form" action="">
             <div id="input_container">
-                <label for="raza"></label>
-                <input class="input_perdi" type="text" id="raza" name="fraza" placeholder="Raza:">
-        
-                <label for="color"></label>
-                <input class="input_perdi" type="text" id="color" name="fcolor" placeholder="Color:">
-        
-                <label for="zona"></label>
-                <input class="input_perdi" type="text" id="zona" name="fzona" placeholder="Zona:">
-        
-                <label for="foto"></label>
-                <input class="input_perdi" type="image" id="image" name="fimage" placeholder="Imagen:" value="Imagen">
+                <div class="label_container">
+                    <label for="raza"></label>
+                    <input class="input_perdi left" type="text" id="raza" name="fraza" placeholder="Raza">
+            
+                    <label for="color"></label>
+                    <input class="input_perdi" type="text" id="color" name="fcolor" placeholder="Color">
+                </div>
+
+                <div class="label_container">
+                    <label for="zona"></label>
+                    <input class="input_perdi left" type="text" id="zona" name="fzona" placeholder="Zona">
+            
+                    <label for="telefono"></label>
+                    <input class="input_perdi" type="telephone" id="telefono" name="ftelefono" placeholder="Telefono">
+                </div>
         
                 <label for="email"></label>
-                <input class="input_perdi" type="email" id="email" name="femail" placeholder="Email:">
-        
-                <button type="submit">Enviar</button>
+                <input class="input_perdi" type="email" id="email" name="femail" placeholder="Email">
+
+                <label for="message"></label>
+                <textarea class="input_perdi" id="message" name="fmessage" placeholder="Mensaje"></textarea>
+
+                <label for="foto">Foto de la mascota:</label>
+                <input type="file" id="image" name="fimage">
+                <button id="enviar" type="submit">ENVIAR</button>
             </div>
         </form>
     </div>

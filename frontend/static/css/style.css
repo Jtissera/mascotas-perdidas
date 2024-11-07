@@ -109,7 +109,19 @@ body{
 .home_button:hover{
     background-color: #927865;
 }
+#title_perdi_container{
+    display: flex;
+    justify-content: center;
+    height: 7vh;
+    margin-top: 10px;
+}
+#title_perdi{
+    color: #5F4F42;
+    font-size: 50px;
+    font-weight:500 ;
+}
 #content_perdi{
+    height: 85vh;
     display: flex;
 }
 #map_container{
@@ -127,7 +139,6 @@ body{
     width: 100%;
 }
 #form_container{
-    height: 90vh;
     width: 50%;
 }
 #form{
@@ -136,8 +147,8 @@ body{
     align-items: center;
 }
 #input_container{
-    height: 60%;
-    width: 45%;
+    height: 70%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -145,15 +156,57 @@ body{
 }
 
 .input_perdi{
-    width: 400px;
+    width: 50%;
     height: 50px;
     background-color:#E1D8CB ;
     color: #927865;
     border: 2px solid #bbaea5;
-    border-radius: 4px;
+    border-radius: 7px;
+    font-size: 18px;
+    font-weight: 400;
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.input_perdi:focus{
+    border:2px solid #706257;
+    outline: none;
+}
+.left{
+    margin-right: 30px;
 }
 
+.label_container{
+    width: 100%;
+    display: flex;
+}
 
+#email{
+    width: 98%;
+    min-height: 50px;
+}
+#message{
+    padding-top: 10px;
+    width: 98%;
+    height: 150px;
+    resize: none;
+}
+#enviar{
+    background-color: #5F4F42;
+    padding: 20px 100px 20px 100px;
+    border-radius: 10px;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+}
+#enviar:hover{
+    cursor: pointer;
+    background-color:#927865 ;
+}
+#image{
+    margin-bottom: 20px;
+}
 
 @media only screen and (max-width: 1600px) {
     #left_home{
