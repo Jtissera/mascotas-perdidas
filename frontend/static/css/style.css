@@ -289,6 +289,68 @@ body{
     font-size: 18px;
 }
 
+#como_funciona_title {
+    font-family: Arial, sans-serif; 
+    font-size: 50px;
+    text-align: center;
+    color: #4f4032
+}
+.como_funciona_bloque{
+    max-width: 600px;                
+    margin: 20px auto;        
+    border-radius: 8px;                        
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    font-family: Arial, sans-serif;  
+}
+.como_funciona_subtitle{
+    background-color: #d9d9d9;       
+    padding: 15px;                  
+    text-align: center;              
+}
+.como_funciona_subtitle h1 {
+    margin: 0;                       
+    font-size: 1.5em;              
+    color: #4f4032;                
+}
+.como_funciona_text p {
+    background-color: #b0a69f;       
+    padding: 10px 15px; 
+    margin: 0;                      
+    font-size: 1em;                  
+    color: #4f4032;                  
+}
+#faq_title{
+    font-family: Arial, sans-serif; 
+    font-size: 50px;
+    color: #4f4032;
+    margin-left: 13.5%;
+}
+.faq_bloque {
+    max-width: 600px;                
+    margin: 20px auto;   
+    margin-left: 2%;         
+    border-radius: 8px;                        
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    font-family: Arial, sans-serif; 
+}
+.faq_subtitle{
+    background-color: #d9d9d9;       
+    padding: 15px;                  
+    text-align: center; 
+}
+.faq_subtitle h2 {
+    margin: 0;                       
+    font-size: 1.5em;              
+    color: #4f4032;                
+}
+.faq_text p {
+    background-color: #b0a69f;       
+    padding: 10px 15px; 
+    margin: 0;                      
+    font-size: 1em;                  
+    color: #4f4032;  
+}
+
 @media only screen and (max-width: 1600px) {
     #left_home{
         width: 50%;
