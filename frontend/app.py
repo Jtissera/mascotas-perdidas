@@ -26,5 +26,9 @@ def homeV1():
 def faq():
     return render_template("faq.html")
 
+@app.route("/info")
+def info():
+    return render_template("info.html")
+
 if __name__ == "__main__":
     app.run(debug=True, port=5050)
