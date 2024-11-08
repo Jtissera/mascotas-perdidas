@@ -42,5 +42,35 @@ def mascotas():
     return jsonify(response), 200
 
 
+@app.route("/crear_mascota", methods=["POST"])
+def crear_mascota():
+    conn = set_connection()
+    data = request.get_json()
+
+    keys = (
+        "raza",
+        "color",
+        "edad",
+        "zona",
+        "fecha",
+        "descripcion",
+        "estado",
+    )
+    for key in keys:
+        if key not in data:
+            return jsonify({"error": f"Falta el dato {key}"}), 400
+
+    query = f"INSERT INTO mascotas (raza,color,edad,zona,fecha,descripcion,estado) VALUES ('{data["raza"]}','{data["color"]}','{data["edad"]}','{data["zona"]}','{data["fecha"]}','{data["descripcion"]}','{data["estado"]}');"
+
+    try:
+        result = conn.execute(text(query))
+        conn.commit()
+
+    except SQLAlchemyError as err:
+        print("error", err.__cause__)
+
+    return jsonify({"message": "se a agregado correctamente" + query}), 201
+
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
