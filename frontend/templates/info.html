@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Informacion{% endblock %}
+
+{% block head %} 
+<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    
+    .info-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 93vh;
+    background-color: #EAE6DF;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-image: url('../static/images/fondo_info.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+
+    .contenedor {
+    width: 300px;
+    padding: 10px;
+    background-color: #5F4F42;
+    color: azure;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #776F63;
+    border-radius: 5px;
+    font-family: "Sour Gummy", sans-serif;
+    font-size: 150%;
+    }
+
+    .contenedor .titulo {
+    font-weight: bold;
+    font-size: 1.3em;
+    }
+
+    .informacion {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #5F4F42;
+    text-align: left;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 0 10px;
+    transition: max-height 0.7s ease;
+    font-weight: 200;
+    }
+
+    .contenedor:hover .informacion {
+    max-height: 600px;
+    padding: 10px;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+<div class="info-body">
+    <div class="contenedor">
+        <span class="titulo">HISTORIA</span>
+        <div class="informacion">
+            <p>Nuestra organización nació de una simple idea: ayudar a las mascotas a encontrar su camino de regreso a casa. Todo comenzó en 2018, cuando un grupo de amigos se unió para crear una plataforma que conectara personas que han perdido a sus mascotas con quienes las han encontrado. Con el apoyo de voluntarios y amantes de los animales, hemos crecido para convertirnos en un recurso confiable para miles de familias.</p>
+        </div>
+    </div>
+
+    <div class="contenedor">
+        <span class="titulo">MISION</span>
+        <div class="informacion">
+            <p>Nuestra misión es brindar una herramienta accesible y efectiva para que las familias puedan reunirse con sus mascotas. Creemos que cada mascota merece un hogar amoroso y seguro, y estamos aquí para facilitar ese reencuentro.</p>
+        </div>
+    </div>
+
+    <div class="contenedor">
+        <span class="titulo">VISION</span>
+        <div class="informacion">
+            <p>Soñamos con un mundo donde ninguna mascota se pierda para siempre y donde todas encuentren su camino de regreso a casa. Aspiramos a crear una comunidad solidaria que trabaje unida para reducir el número de mascotas perdidas.</p>
+        </div>
+    </div>
+
+    <div class="contenedor">
+        <span class="titulo">VALORES</span>
+        <div class="informacion">
+            <ul>
+                <li>Empatía hacia los animales y sus dueños.</li>
+                <li>Compromiso con la seguridad y el bienestar de las mascotas.</li>
+                <li>Colaboración con voluntarios y refugios.</li>
+                <li>Transparencia en nuestras acciones y procesos.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="contenedor">
+        <span class="titulo">EQUIPO</span>
+        <div class="informacion">
+            <ul>
+                <li>Federico Messil</li>
+                <li>Valentin Outeda</li>
+                <li>Franco Cecchi</li>
+                <li>Andrés Romanello</li>
+                <li>José Tissera</li>
+                <li>Diego Rojas</li>
+                <li>Nicolás Sotomayor</li>
+                <li>Alessandro Perez</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
