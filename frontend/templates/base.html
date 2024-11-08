@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>{% block title %} {% endblock %}</title>
     <meta charset="utf-8">
@@ -8,24 +9,28 @@
     <meta name="description" content="Your description">
     <meta name="keywords" content="Your keywords">
     <meta name="author" content="Your name">
-    <meta name = "format-detection" content = "telephone=no" />
+    <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename ='css/style.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <nav id="navbar">
         <div id="navbar_content">
-            <a href="{{url_for('homeV1')}}"class="navbar_text">INICIO</a>
-            <a href="{{url_for('perdi_mi_mascota')}}"class="navbar_text">PERDI A MI MASCOTA</a>
-            <a href="{{url_for('encontre_una_mascota')}}"class="navbar_text">ENCONTRE UNA MASCOTA</a>
-            <a href=""class="navbar_text">COMO FUNCIONA</a>
+            <a href="{{url_for('homeV1')}}" class="navbar_text">INICIO</a>
+            <a href="{{url_for('perdi_mi_mascota')}}" class="navbar_text">PERDÍ A MI MASCOTA</a>
+            <a href="{{url_for('encontre_una_mascota')}}" class="navbar_text">ENCONTRÉ UNA MASCOTA</a>
+            <a href="{{url_for('faq')}}" class="navbar_text">CÓMO FUNCIONA</a>
         </div>
     </nav>
     <div id="body">
         {% block body %} {% endblock %}
     </div>
 </body>
+
 </html>
