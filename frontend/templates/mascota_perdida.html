@@ -4,6 +4,7 @@
 <div id="individual_mascota_container">
 
     <div id="mascota_details">
+        
         <!-- Imagen de la mascota -->
         <div id="mascota_image_container">
             <img id="mascota_image" src="{{ mascota.foto_url }}" alt="Foto de la mascota">
@@ -28,6 +29,16 @@
                 <li class="mascota_info_item">
                     <span class="mascota_info_icon">📅</span>
                     <span class="mascota_info_text"><strong>Fecha de pérdida:</strong> {{ mascota.fecha }}</span>
+                </li>
+                <!-- Nuevo ítem de Descripción -->
+                <li class="mascota_info_item">
+                    <span class="mascota_info_icon">📝</span>
+                    <span class="mascota_info_text"><strong>Descripción:</strong> {{ mascota.descripcion }}</span>
+                </li>
+                <!-- Nuevo ítem de Otros Comentarios -->
+                <li class="mascota_info_item">
+                    <span class="mascota_info_icon">💬</span>
+                    <span class="mascota_info_text"><strong>Otros Comentarios:</strong> {{ mascota.comentarios }}</span>
                 </li>
             </ul>
         </div>

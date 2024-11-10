@@ -43,13 +43,78 @@ def mostrar_mascota(mascota_id):
     return render_template('mascota_perdida.html', mascota=mascota)
 
 mascotas = [
-    {'id': 1, 'nombre': '/', 'animal': 'Perro', 'raza': 'Labrador', 'lugar_perdido': 'Parque Central', 'fecha_perdida': '2024-11-01', 'info_adicional': 'Llevaba un collar rojo'},
-    {'id': 2, 'nombre': 'taya', 'animal': 'Gato', 'raza': 'Siames', 'lugar_perdido': 'Calle 42', 'fecha_perdida': '2024-10-29', 'info_adicional': 'Es muy tímido'},
-    {'id': 3, 'nombre': 'maco', 'animal': 'Gato', 'raza': 'Siames', 'lugar_perdido': 'Calle 42', 'fecha_perdida': '2024-10-29', 'info_adicional': 'Es muy tímido'},
-    {'id': 4, 'nombre': 'caco', 'animal': 'Gato', 'raza': 'Siames', 'lugar_perdido': 'Calle 42', 'fecha_perdida': '2024-10-29', 'info_adicional': 'Es muy tímido'},
-    {'id': 5, 'nombre': 'paco', 'animal': 'Gato', 'raza': 'Siames', 'lugar_perdido': 'Calle 42', 'fecha_perdida': '2024-10-29', 'info_adicional': 'Es muy tímido'},
-    {'id': 6, 'nombre': 'naco', 'animal': 'Gato', 'raza': 'Siames', 'lugar_perdido': 'Calle 42', 'fecha_perdida': '2024-10-29', 'info_adicional': 'Es muy tímido'}
-    
+    {
+        'id': 1,
+        'nombre': '/',
+        'animal': 'Perro',
+        'raza': 'Labrador',
+        'lugar_perdido': 'Parque Central',
+        'fecha_perdida': '2024-11-01',
+        'info_adicional': 'Llevaba un collar rojo',
+        'descripcion': 'Perro activo y juguetón.',
+        'otros_comentarios': 'Es muy amigable con las personas.',
+        'foto_url': 'images/perro.jpg'
+    },
+    {
+        'id': 2,
+        'nombre': 'Taya',
+        'animal': 'Gato',
+        'raza': 'Siames',
+        'lugar_perdido': 'Calle 42',
+        'fecha_perdida': '2024-10-29',
+        'info_adicional': 'Es muy tímido',
+        'descripcion': 'Gato de tamaño medio con pelaje corto.',
+        'otros_comentarios': 'No se lleva bien con otros gatos.',
+        'foto_url': 'images/gato.wepp'
+    },
+    {
+        'id': 3,
+        'nombre': 'Maco',
+        'animal': 'Gato',
+        'raza': 'Siames',
+        'lugar_perdido': 'Calle 42',
+        'fecha_perdida': '2024-10-29',
+        'info_adicional': 'Es muy tímido',
+        'descripcion': 'Gato de pelaje suave y ojos azules.',
+        'otros_comentarios': 'Suele esconderse en lugares oscuros.',
+        'foto_url': 'images/perro2.webp'
+    },
+    {
+        'id': 4,
+        'nombre': 'Caco',
+        'animal': 'Gato',
+        'raza': 'Siames',
+        'lugar_perdido': 'Calle 42',
+        'fecha_perdida': '2024-10-29',
+        'info_adicional': 'Es muy tímido',
+        'descripcion': 'Gato pequeño con orejas puntiagudas.',
+        'otros_comentarios': 'Es muy dulce, pero necesita tiempo para confiar.',
+        'foto_url': 'images/hamster.jpg'
+    },
+    {
+        'id': 5,
+        'nombre': 'Paco',
+        'animal': 'Gato',
+        'raza': 'Siames',
+        'lugar_perdido': 'Calle 42',
+        'fecha_perdida': '2024-10-29',
+        'info_adicional': 'Es muy tímido',
+        'descripcion': 'Gato de pelaje gris y ojos amarillos.',
+        'otros_comentarios': 'Tiende a alejarse de las personas.',
+        'foto_url': 'images/loro.jpg'
+    },
+    {
+        'id': 6,
+        'nombre': 'Naco',
+        'animal': 'Gato',
+        'raza': 'Siames',
+        'lugar_perdido': 'Calle 42',
+        'fecha_perdida': '2024-10-29',
+        'info_adicional': 'Es muy tímido',
+        'descripcion': 'Gato juguetón que disfruta de estar al aire libre.',
+        'otros_comentarios': 'Es más activo durante la noche.',
+        'foto_url': 'images/gato2.jpg'
+    }
 ]
 
 @app.route('/test_mascota')
