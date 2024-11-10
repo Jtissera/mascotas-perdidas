@@ -351,6 +351,34 @@ body{
     color: #4f4032;  
 }
 
+#mascota_info_list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.mascota_info_item {
+    display: flex;
+    align-items: center;
+    background-color: #f5f0eb;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mascota_info_icon {
+    font-size: 24px;
+    margin-right: 15px;
+    color: #5F4F42;
+}
+
+.mascota_info_text {
+    font-size: 18px;
+    color: #706257;
+}
+
+
 @media only screen and (max-width: 1600px) {
     #left_home{
         width: 50%;
