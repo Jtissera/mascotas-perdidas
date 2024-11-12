@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 def set_connection():
     engine = create_engine(
-        "mysql+mysqlconnector://root:root@localhost:3306/MascotasPerdidasDB"
+        "mysql+mysqlconnector://root:franco@localhost:3306/MascotasPerdidasDB"
     )
 
     connection = engine.connect()
@@ -29,13 +29,16 @@ def mascotas():
         response.append(
             {
                 "mascotaID": row[0],
-                "raza": row[1],
-                "color": row[2],
-                "edad": row[3],
-                "zona": row[4],
-                "fecha": row[5],
-                "descripcion": row[6],
-                "estado": row[7],
+            	"nombre": row[1],
+            	"animal": row[2],
+            	"raza": row[3],
+            	"color": row[4],
+            	"edad": row[5],
+            	"zona": row[6],
+            	"fecha": row[7],
+            	"descripcion": row[8],
+            	"estado": row[9],
+                "imagen": row[10]
             }
         )
 
@@ -48,28 +51,37 @@ def crear_mascota():
     data = request.get_json()
 
     keys = (
+	"nombre",
+	"animal",
         "raza",
         "color",
         "edad",
         "zona",
+	"telefono",
+	"email",
         "fecha",
         "descripcion",
-        "estado",
+        "estado"
     )
     for key in keys:
         if key not in data:
             return jsonify({"error": f"Falta el dato {key}"}), 400
 
-    query = f"INSERT INTO mascotas (raza,color,edad,zona,fecha,descripcion,estado) VALUES ('{data["raza"]}','{data["color"]}','{data["edad"]}','{data["zona"]}','{data["fecha"]}','{data["descripcion"]}','{data["estado"]}');"
+    query_1 = f"""INSERT INTO mascotas (nombre, animal,raza,color,edad,zona,fecha,descripcion,estado) 
+    VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["zona"]}','{data["fecha"]}','{data["descripcion"]}','{data["estado"]}');"""
+    
+    query_2 = f"""INSERT INTO personas (telefono, email) 
+    VALUES ('{data["telefono"]}','{data["email"]}');"""
 
     try:
-        result = conn.execute(text(query))
+        conn.execute(text(query_1))
+	conn.execute(text(query_2))
         conn.commit()
 
     except SQLAlchemyError as err:
         print("error", err.__cause__)
 
-    return jsonify({"message": "se a agregado correctamente" + query}), 201
+    return jsonify({"message": "se a agregado correctamente" + query_1 + query_2}), 201
 
 
 if __name__ == "__main__":
