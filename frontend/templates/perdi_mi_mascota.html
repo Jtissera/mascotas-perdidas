@@ -8,53 +8,16 @@
     </div>
     <div id="flex_container">
         <div id="grid_container">
+            {%for mascota in mascotas %}
             <div class="item">
-                <img class="item_image" src="{{url_for('static',filename='images/perro.jpg')}}" alt="">
-                <h3 class="nombre">#N/A</h3>
-                <h5 class="tipo">Perro</h5>
-                <h6 class="raza"> Labrador</h6>
-                <p class="descripcion">Perro pequeño color marron, encontrado sin collar en Av. Libertador.</p>
+                <img class="item_image" src="{{mascota.imagen}}" alt = "{{mascota.animal}}">
+                <h3 class="nombre">{{mascota.nombre}}</h3>
+                <h5 class="tipo">{{mascota.animal}}</h5>
+                <h6 class="raza">{{mascota.raza}}</h6>
+                <p class="descripcion">{{mascota.descripcion}}</p>
             </div>
-    
-            <div class="item">
-                <img class="item_image" src="{{url_for('static',filename='images/gato.webp')}}" alt="">
-                <h3 class="nombre">Taya</h3>
-                <h5 class="tipo">Gato</h5>
-                <h6 class="raza">Persa</h6>
-                <p class="descripcion">Gato perdido con collar cerca de Av. Santa Fe.</p>
-            </div>
-    
-            <div class="item">
-                <img class="item_image" src="{{url_for('static',filename='images/perro2.webp')}}" alt="">
-                <h3 class="nombre">Maco</h3>
-                <h5 class="tipo">Perro</h5>
-                <h6 class="raza"> Labrador</h6>
-                <p class="descripcion">Encontramos este perro con collar por San Isidro.</p>
-            </div>
-    
-            <div class="item">
-                <img class="item_image" src="{{url_for('static',filename='images/hamster.jpg')}}" alt="">
-                <h3 class="nombre">Maco</h3>
-                <h5 class="tipo">hamster</h5>
-                <h6 class="raza">Chino</h6>
-                <p class="descripcion">Encontramos este hamster perdido, coumunicarse si conoce al dueño.</p>
-            </div>
-    
-            <div class="item">
-                <img class="item_image" src="{{url_for('static',filename='images/loro.jpg')}}" alt="">
-                <h3 class="nombre">Mirinda</h3>
-                <h5 class="tipo">Loro</h5>
-                <h6 class="raza">Guacamayo</h6>
-                <p class="descripcion">Loro perdido en la zona de Moron.</p>
-            </div>
-    
-            <div class="item">
-                <img class="item_image" src="{{url_for('static',filename='images/gato2.jpg')}}" alt="">
-                <h3 class="nombre">Jack</h3>
-                <h5 class="tipo">Gato</h5>
-                <h6 class="raza">Siames</h6>
-                <p class="descripcion">Gato siames encontrado, con un collar con el nombre Jack.</p>
-            </div>
+	    {% endfor %} 
+	    </div>
         </div>
     </div>
 </div>
