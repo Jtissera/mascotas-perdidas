@@ -7,7 +7,8 @@
         
         <!-- Imagen de la mascota -->
         <div id="mascota_image_container">
-            <img id="mascota_image" src="{{ mascota.foto_url }}" alt="Foto de la mascota">
+            <img id="mascota_image" src="{{ url_for('static', filename=mascota.foto_url) }}" alt="Foto de la mascota">
+
         </div>
 
         <!-- Información de la mascota -->

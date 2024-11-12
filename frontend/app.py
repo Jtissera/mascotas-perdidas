@@ -45,7 +45,7 @@ def mostrar_mascota(mascota_id):
 mascotas = [
     {
         'id': 1,
-        'nombre': '/',
+        'nombre': '#N/A',
         'animal': 'Perro',
         'raza': 'Labrador',
         'lugar_perdido': 'Parque Central',
@@ -65,57 +65,42 @@ mascotas = [
         'info_adicional': 'Es muy tímido',
         'descripcion': 'Gato de tamaño medio con pelaje corto.',
         'otros_comentarios': 'No se lleva bien con otros gatos.',
-        'foto_url': 'images/gato.wepp'
+        'foto_url': 'images/gato.webp'
     },
     {
         'id': 3,
         'nombre': 'Maco',
-        'animal': 'Gato',
-        'raza': 'Siames',
-        'lugar_perdido': 'Calle 42',
-        'fecha_perdida': '2024-10-29',
-        'info_adicional': 'Es muy tímido',
-        'descripcion': 'Gato de pelaje suave y ojos azules.',
-        'otros_comentarios': 'Suele esconderse en lugares oscuros.',
+        'animal': 'Perro',
+        'raza': 'Labrador',
+        'descripcion': 'Encontramos este perro con collar por San Isidro.',
         'foto_url': 'images/perro2.webp'
     },
     {
         'id': 4,
         'nombre': 'Caco',
-        'animal': 'Gato',
-        'raza': 'Siames',
-        'lugar_perdido': 'Calle 42',
-        'fecha_perdida': '2024-10-29',
-        'info_adicional': 'Es muy tímido',
-        'descripcion': 'Gato pequeño con orejas puntiagudas.',
-        'otros_comentarios': 'Es muy dulce, pero necesita tiempo para confiar.',
+        'animal': 'Hamster',
+        'raza': 'Chino',
+        'descripcion': 'Encontramos este hamster perdido, comunicarse si conoce al dueño.',
         'foto_url': 'images/hamster.jpg'
     },
     {
         'id': 5,
-        'nombre': 'Paco',
-        'animal': 'Gato',
-        'raza': 'Siames',
-        'lugar_perdido': 'Calle 42',
-        'fecha_perdida': '2024-10-29',
-        'info_adicional': 'Es muy tímido',
-        'descripcion': 'Gato de pelaje gris y ojos amarillos.',
-        'otros_comentarios': 'Tiende a alejarse de las personas.',
+        'nombre': 'Mirinda',
+        'animal': 'Loro',
+        'raza': 'Guacamayo',
+        'descripcion': 'Loro perdido en la zona de Moron.',
         'foto_url': 'images/loro.jpg'
     },
     {
         'id': 6,
-        'nombre': 'Naco',
+        'nombre': 'Jack',
         'animal': 'Gato',
         'raza': 'Siames',
-        'lugar_perdido': 'Calle 42',
-        'fecha_perdida': '2024-10-29',
-        'info_adicional': 'Es muy tímido',
-        'descripcion': 'Gato juguetón que disfruta de estar al aire libre.',
-        'otros_comentarios': 'Es más activo durante la noche.',
+        'descripcion': 'Gato siames encontrado, con un collar con el nombre Jack.',
         'foto_url': 'images/gato2.jpg'
     }
 ]
+
 
 @app.route('/test_mascota')
 def test_mascota():
