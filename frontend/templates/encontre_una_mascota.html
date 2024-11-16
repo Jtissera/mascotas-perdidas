@@ -14,15 +14,15 @@
         </figure>
     </div>
     <div id="form_container">
-        <form id="form" action="">
+        <form id="form" method = "POST" action="{{ url_for('encontre_una_mascota') }}">
             <div id="input_container">
 
 		<div class="label_container">
                 <label for="nombre"></label>
-                <input class="input_perdi left" type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                <input class="input_perdi left" type="text" id="nombre" name="fnombre" placeholder="Nombre" required>
                 
                 <label for="animal"></label>
-                <input class="input_perdi" type="text" id="animal" name="animal" placeholder="Animal" required>
+                <input class="input_perdi" type="text" id="animal" name="fanimal" placeholder="Animal" required>
                 </div>
 
                 <div class="label_container">
@@ -47,8 +47,8 @@
                 <label for="message"></label>
                 <textarea class="input_perdi" id="message" name="fmessage" placeholder="Mensaje"></textarea>
 
-		<label for="edad"></label>
-                <input class="input_perdi" type="text" id="edad" name="edad" placeholder="Edad">
+		        <label for="edad"></label>
+                <input class="input_perdi" type="text" id="edad" name="fedad" placeholder="Edad">
 
                
                 <label for="fecha"></label>
