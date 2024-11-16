@@ -117,3 +117,101 @@
                     size_hint_x: None
                     width: "200dp"
                     on_release: root.parent.current = "found_pet"
+
+<LostPetScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "10dp"
+        
+        MDTopAppBar:
+            title: ""
+            md_bg_color: 95/255, 79/255, 66/255, 1
+            specific_text_color: 1, 1, 1, 1
+            NavigationBar:
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            padding: "20dp"
+            spacing: "20dp"
+
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_x: 0.5
+                spacing: "20dp"
+                
+                MDLabel:
+                    text: "Cargá los datos de la mascota"
+                    halign: "left"
+                    font_style: "H5"
+                    theme_text_color: "Custom"
+                    text_color: 95/255, 79/255, 66/255, 1
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                MDGridLayout:
+                    cols: 2
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    
+                    CustomTextField:
+                        hint_text: "Raza"
+                    
+                    CustomTextField:
+                        hint_text: "Color"
+                    
+                    CustomTextField:
+                        hint_text: "Zona"
+                    
+                    CustomTextField:
+                        hint_text: "Teléfono"
+
+                CustomTextField:
+                    hint_text: "Email"
+                    size_hint_y: None
+                    height: "48dp"
+
+                MDTextField:
+                    hint_text: "Mensaje"
+                    mode: "rectangle"
+                    multiline: True
+                    size_hint_y: None
+                    height: "100dp"
+                    fill_color: 225/255, 217/255, 209/255, 1
+                    md_bg_color: 225/255, 217/255, 209/255, 1
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: "100dp"
+                    spacing: "10dp"
+
+                    MDLabel:
+                        text: "Foto de la mascota:"
+                        theme_text_color: "Custom"
+                        text_color: 95/255, 79/255, 66/255, 1
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    MDLabel:
+                        id: selected_file_label
+                        text: "Ningún archivo seleccionado"
+                        theme_text_color: "Custom"
+                        text_color: 95/255, 79/255, 66/255, 1
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    MDRaisedButton:
+                        text: "Seleccionar archivo"
+                        md_bg_color: 225/255, 217/255, 209/255, 1
+                        text_color: 95/255, 79/255, 66/255, 1
+                        size_hint_x: None
+                        width: "200dp"
+                        on_release: root.open_file_chooser()
+
+                MDRaisedButton:
+                    text: "ENVIAR"
+                    md_bg_color: 95/255, 79/255, 66/255, 1
+                    size_hint_x: None
+                    width: "200dp"
+                    pos_hint: {"center_x": .5}
