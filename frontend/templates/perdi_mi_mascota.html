@@ -3,8 +3,10 @@
 {% block body %}
 <div id="encontre_content">
     <div id="buscador_container">
+        <form action="{{url_for('perdi_mi_mascota')}}">
         <label for="search"></label>
         <input type="search" id="search" name="fsearch" placeholder="Buscar">
+        </form>
     </div>
     <div id="flex_container">
         <div id="grid_container">
