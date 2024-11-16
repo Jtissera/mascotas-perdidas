@@ -1,23 +1,73 @@
-# --- Importaciones ---
-from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.button import Button
-from kivy.uix.label import Label
-from kivy.uix.textinput import TextInput
-from kivy.uix.image import Image
-from kivy.uix.popup import Popup
-from kivy.uix.progressbar import ProgressBar
-from kivy.utils import get_color_from_hex
-from kivy.graphics import Color, Rectangle 
-from kivy.garden.mapview import MapView, MapMarker
-from kivy.clock import Clock
-import requests
-
-# --- Clases para la UI de Mascotas ---
+from kivymd.app import MDApp
+from kivy.lang import Builder
+from kivymd.uix.screen import MDScreen
+from kivy.uix.screenmanager import ScreenManager
+from kivy.core.window import Window
+from plyer import filechooser
+from kivymd.uix.button import MDFlatButton
+from kivymd.uix.dialog import MDDialog
 
 
+class BaseScreen(MDScreen):
+    selected_file_label = None
 
-# --- Ejecución de la Aplicación ---
-if __name__ == '__main__':
-    AplicacionPrincipal().run()
+    def navigate(self, screen_name):
+        self.parent.current = screen_name
+        
+    def show_selected_file(self, selection):
+        if selection:
+            self.selected_file_label.text = selection[0]
+    
+    def open_file_chooser(self):
+        try:
+            filechooser.open_file(
+                on_selection=self.show_selected_file,
+                filters=[("Imágenes", "*.png", "*.jpg", "*.jpeg")]
+            )
+        except:
+            dialog = MDDialog(
+                title="Error",
+                text="No se pudo abrir el selector de archivos.",
+                buttons=[
+                    MDFlatButton(
+                        text="OK",
+                        on_release=lambda x: dialog.dismiss()
+                    )
+                ]
+            )
+            dialog.open()
+
+class HomeScreen(BaseScreen):
+    pass
+
+class LostPetScreen(BaseScreen):
+    pass
+
+class FoundPetScreen(BaseScreen):
+    pass
+
+class HowItWorksScreen(BaseScreen):
+    pass
+
+class MoreInfoScreen(BaseScreen):
+    pass
+
+class Ui(ScreenManager):
+    pass
+
+class MainApp(MDApp):
+    def build(self):
+        self.theme_cls.primary_palette = "Brown"
+        self.theme_cls.primary_hue = "400"
+        Builder.load_file("design.kv")
+        
+        sm = Ui()
+        sm.add_widget(HomeScreen(name="home"))
+        sm.add_widget(LostPetScreen(name="lost_pet"))
+        sm.add_widget(FoundPetScreen(name="found_pet"))
+        sm.add_widget(HowItWorksScreen(name="how_it_works"))
+        sm.add_widget(MoreInfoScreen(name="more_info"))
+        return sm
+
+if __name__ == "__main__":
+    MainApp().run()
