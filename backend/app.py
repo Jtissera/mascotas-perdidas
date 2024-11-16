@@ -18,9 +18,25 @@ def set_connection():
 @app.route("/mascotas", methods=["GET"])
 def mascotas():
     conn = set_connection()
-    query = "SELECT * FROM mascotas"
+    nombre_filtro = request.args.get('filtro')
+
+    if nombre_filtro:
+        query = """
+        SELECT * FROM mascotas 
+        WHERE nombre LIKE :filtro 
+        OR raza LIKE :filtro 
+        OR color LIKE :filtro 
+        OR zona LIKE :filtro 
+        OR estado LIKE :filtro
+        OR animal LIKE :filtro
+    """
+        query_params = {'filtro': f'%{nombre_filtro}%'}
+    else:
+        query = "SELECT * FROM mascotas"
+        query_params = {}
+
     try:
-        result = conn.execute(text(query))
+        result = conn.execute(text(query), query_params)
     except SQLAlchemyError as err:
         print("error", err.__cause__)
 
@@ -50,32 +66,24 @@ def crear_mascota():
     conn = set_connection()
     data = request.get_json()
 
-    keys = (
-	"nombre",
-	"animal",
-        "raza",
-        "color",
-        "edad",
-        "zona",
-	"telefono",
-	"email",
-        "fecha",
-        "descripcion",
-        "estado"
+    print("Datos recibidos:", data)
+
+    keys = ("nombre","animal","raza","color","edad","zona",
+	"telefono","email","fecha","descripcion","imagen"
     )
     for key in keys:
         if key not in data:
             return jsonify({"error": f"Falta el dato {key}"}), 400
 
-    query_1 = f"""INSERT INTO mascotas (nombre, animal,raza,color,edad,zona,fecha,descripcion,estado) 
-    VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["zona"]}','{data["fecha"]}','{data["descripcion"]}','{data["estado"]}');"""
+    query_1 = f"""INSERT INTO mascotas (nombre, animal,raza,color,edad,zona,fecha,descripcion,imagen) 
+    VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["zona"]}','{data["fecha"]}','{data["descripcion"]}','{data["imagen"]}');"""
     
     query_2 = f"""INSERT INTO personas (telefono, email) 
     VALUES ('{data["telefono"]}','{data["email"]}');"""
 
     try:
         conn.execute(text(query_1))
-	conn.execute(text(query_2))
+        conn.execute(text(query_2))
         conn.commit()
 
     except SQLAlchemyError as err:
