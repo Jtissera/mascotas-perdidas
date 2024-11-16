@@ -56,3 +56,64 @@
             title: ""
             md_bg_color: 95/255, 79/255, 66/255, 1
             specific_text_color: 1, 1, 1, 1
+
+<HomeScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "10dp"
+        padding: "0dp"
+
+        MDTopAppBar:
+            size_hint_y: 0.1
+            height: "80dp"
+            md_bg_color: 95/255, 79/255, 66/255, 1
+            specific_text_color: 1, 1, 1, 1
+            NavigationBar:
+
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: "20dp"
+            size_hint_y: 0.9
+            padding: "20dp"
+            
+            MDLabel:
+                text: "¡Te ayudamos a\\nencontrar a tu mascota!"
+                halign: "center"
+                font_style: "H3"
+                theme_text_color: "Custom"
+                text_color: 95/255, 79/255, 66/255, 1
+                size_hint_y: None
+                height: self.texture_size[1]
+                markup: True
+
+            MDLabel:
+                text: "¿Perdiste a tu mascota o encontraste una mascota perdida? Esta aplicación está aquí para ayudar a las mascotas a volver a sus hogares."
+                halign: "center"
+                font_style: "Body1"
+                theme_text_color: "Custom"
+                text_color: 95/255, 79/255, 66/255, 1
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: "20dp"
+                size_hint_y: None
+                height: "60dp"
+                pos_hint: {"center_x": 0.5}
+                
+                MDRaisedButton:
+                    text: "PERDÍ A MI MASCOTA"
+                    md_bg_color: 95/255, 79/255, 66/255, 1
+                    text_color: 1, 1, 1, 1
+                    size_hint_x: None
+                    width: "200dp"
+                    on_release: root.parent.current = "lost_pet"
+                
+                MDRaisedButton:
+                    text: "ENCONTRÉ UNA MASCOTA"
+                    md_bg_color: 95/255, 79/255, 66/255, 1
+                    text_color: 1, 1, 1, 1
+                    size_hint_x: None
+                    width: "200dp"
+                    on_release: root.parent.current = "found_pet"
