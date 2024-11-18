@@ -241,14 +241,13 @@ body{
     grid-template-rows: 1fr 1fr;
     gap: 25px;
 }
-.item a {
+.item{
     background-color: white;
     height: 100%;
     justify-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-decoration: none;
 }
 .item_image{
     object-fit: cover;
@@ -260,7 +259,6 @@ body{
     margin-bottom: 5px;
     margin-top: 20px;
     font-size: 20px;
-    text-decoration: none;
 }
 .tipo{
     color: #8b8b8b;
@@ -280,6 +278,7 @@ body{
     margin-bottom: 10px;
     border-top: .5px solid #8b8b8b81;
     border-bottom: .5px solid #8b8b8b81;
+
 }
 
 .descripcion{
@@ -289,6 +288,11 @@ body{
     text-align: center;
     color: #8b8b8b;
     font-size: 18px;
+}
+
+.item-link {
+    color: inherit; 
+    text-decoration: none; 
 }
 
 #como_funciona_title {
@@ -409,10 +413,6 @@ body{
     font-size: 16px;
     color: #333;
 }
-
-
-
-
 
 @media only screen and (max-width: 1600px) {
     #left_home{
