@@ -10,28 +10,21 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-
-import requests  # Make sure you're using the requests module
-
 @app.route("/perdi_mi_mascota")
 def perdi_mi_mascota():
-    # Retrieve the search filter parameter from the URL
-    mascotas_info = request.args.get('fsearch')  # `request` here is Flask's request object, for URL params
+    mascotas_info = request.args.get('fsearch')  
     params = {'filtro': mascotas_info}
 
     try:
-        # Make an external API request using the 'requests' library
         response = requests.get(API_URL + 'mascotas', params=params)
-        response.raise_for_status()  # This will raise an exception for 4xx/5xx HTTP status codes
-        mascotas = response.json()  # Parse the JSON response from the API
-    except requests.exceptions.RequestException as e:  # Handle errors from the requests library
-        print(f"Error fetching data: {e}")  # Log error to the console for debugging
-        mascotas = []  # In case of an error, return an empty list
+        response.raise_for_status()  
+        mascotas = response.json()  
+    except requests.exceptions.RequestException as e:  
+        print(f"Error fetching data: {e}")  
+        mascotas = []  
 
-    # Print the response to the server's console for debugging
     print(mascotas)
 
-    # Render the template and pass the mascotas data to the template
     return render_template("perdi_mi_mascota.html", mascotas=mascotas)
 
 
@@ -66,16 +59,15 @@ def encontre_una_mascota():
 @app.route('/mascota/<int:mascota_id>')
 def mostrar_mascota(mascota_id):
     try:
-        # Make a GET request to the backend to fetch the pet data by ID
         response = requests.get(f'http://localhost:8080/mascota/{mascota_id}')
-        response.raise_for_status()  # Raise an exception if the request was not successful
-        mascota = response.json()  # Parse the JSON response
+        response.raise_for_status()  
+        mascota = response.json()  
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
-        return f"Error: {e}", 500  # Handle the error appropriately
+        return f"Error: {e}", 500  
 
-    # Pass the fetched mascota data to the template
+
     return render_template('mascota_perdida.html', mascota=mascota)
 
 

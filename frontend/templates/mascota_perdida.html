@@ -5,13 +5,11 @@
 
     <div id="mascota_details">
         
-        <!-- Imagen de la mascota -->
         <div id="mascota_image_container">
             <img id="mascota_image" src="{{ url_for('static', filename=mascota.foto_url) }}" alt="Foto de la mascota">
 
         </div>
 
-        <!-- Información de la mascota -->
         <div id="mascota_info_container">
             <h2 id="mascota_nombre">{{ mascota.nombre }}</h2>
             <ul id="mascota_info_list">
@@ -31,12 +29,10 @@
                     <span class="mascota_info_icon">📅</span>
                     <span class="mascota_info_text"><strong>Fecha de pérdida:</strong> {{ mascota.fecha }}</span>
                 </li>
-                <!-- Nuevo ítem de Descripción -->
                 <li class="mascota_info_item">
                     <span class="mascota_info_icon">📝</span>
                     <span class="mascota_info_text"><strong>Descripción:</strong> {{ mascota.descripcion }}</span>
                 </li>
-                <!-- Nuevo ítem de Otros Comentarios -->
                 <li class="mascota_info_item">
                     <span class="mascota_info_icon">💬</span>
                     <span class="mascota_info_text"><strong>Otros Comentarios:</strong> {{ mascota.comentarios }}</span>
