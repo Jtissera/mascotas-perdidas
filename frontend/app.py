@@ -38,7 +38,7 @@ def perdi_mi_mascota():
 @app.route("/encontre_una_mascota", methods=["GET", "POST"])
 def encontre_una_mascota():
     if request.method == "POST":
-        
+      
         file = request.files["fimage"]
         if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
@@ -74,7 +74,7 @@ def encontre_una_mascota():
             print(f"Error al obtener coordenadas: {e}")
             formulario_data["latitud"] = None
             formulario_data["longitud"] = None
-
+            
         try:
             response = requests.post(API_URL + "crear_mascota", json=formulario_data)
             response.raise_for_status()
