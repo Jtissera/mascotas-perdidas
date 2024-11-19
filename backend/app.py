@@ -50,11 +50,12 @@ def mascotas():
             	"raza": row[3],
             	"color": row[4],
             	"edad": row[5],
-            	"zona": row[6],
-            	"fecha": row[7],
-            	"descripcion": row[8],
-            	"estado": row[9],
-                "imagen": row[10]
+            	"fecha": row[6],
+            	"descripcion": row[7],
+            	"estado": row[8],
+                "imagen": row[9],
+                "latitud": row[10],
+                "longitud": row[11] 
             }
         )
 
@@ -68,15 +69,15 @@ def crear_mascota():
 
     print("Datos recibidos:", data)
 
-    keys = ("nombre","animal","raza","color","edad","zona",
-	"telefono","email","fecha","descripcion","imagen"
+    keys = ("nombre","animal","raza","color","edad","telefono",
+    "email","fecha","descripcion","imagen", "latitud", "longitud"
     )
     for key in keys:
         if key not in data:
             return jsonify({"error": f"Falta el dato {key}"}), 400
 
-    query_1 = f"""INSERT INTO mascotas (nombre, animal,raza,color,edad,zona,fecha,descripcion,imagen) 
-    VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["zona"]}','{data["fecha"]}','{data["descripcion"]}','{data["imagen"]}');"""
+    query_1 = f"""INSERT INTO mascotas (nombre,animal,raza,color,edad,fecha,descripcion,imagen,latitud,longitud) 
+    VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["fecha"]}','{data["descripcion"]}','{data["imagen"]}','{data["latitud"]}','{data["longitud"]}');"""
     
     query_2 = f"""INSERT INTO personas (telefono, email) 
     VALUES ('{data["telefono"]}','{data["email"]}');"""

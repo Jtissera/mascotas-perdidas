@@ -12,7 +12,9 @@ CREATE TABLE mascotas(
     descripcion varchar(255),
     estado varchar(255),
     imagen varchar(255),
-	PRIMARY KEY (mascotaID)
+    latitud DECIMAL(9, 6),
+    longitud DECIMAL(9, 6),
+    PRIMARY KEY (mascotaID)
 );
 
 insert into mascotas (nombre,animal,raza,color,edad,zona,fecha,descripcion,estado,imagen) values ("Fito", "Perro", "Doberman","negro",7,"Caballito","2021-12-01","Perro encontrado","perdida","static/images/perro.jpg");

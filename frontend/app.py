@@ -38,26 +38,44 @@ def perdi_mi_mascota():
 @app.route("/encontre_una_mascota", methods=["GET", "POST"])
 def encontre_una_mascota():
     if request.method == "POST":
+      
         file = request.files["fimage"]
+        if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+                imagen_path = f"static/images/{filename}"
+        
+        direccion = request.form.get("fdireccion")
         formulario_data = {
             "nombre": request.form.get("fnombre"),
             "animal": request.form.get("fanimal"),
             "raza": request.form.get("fraza"),
             "color": request.form.get("fcolor"),
             "edad": request.form.get("fedad"),
-            "zona": request.form.get("fzona"),
             "telefono": request.form.get("ftelefono"),
             "email": request.form.get("femail"),
             "fecha": request.form.get("fecha"),
             "descripcion": request.form.get("fmessage"),
-            "imagen": f"static/images/{file.filename}",
+            "imagen": imagen_path
         }
 
+        api_key = "7677b3b3603d4c34bbfc30c063391ca3"
         try:
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            url = f"https://api.opencagedata.com/geocode/v1/json?q={direccion}&key={api_key}"
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
 
+            if data["results"]:
+                formulario_data["latitud"] = data["results"][0]["geometry"]["lat"]
+                formulario_data["longitud"] = data["results"][0]["geometry"]["lng"]
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error al obtener coordenadas: {e}")
+            formulario_data["latitud"] = None
+            formulario_data["longitud"] = None
+            
+        try:
             response = requests.post(API_URL + "crear_mascota", json=formulario_data)
             response.raise_for_status()
 
