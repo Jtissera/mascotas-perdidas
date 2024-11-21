@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, redirect, url_for
 import requests
 from werkzeug.utils import secure_filename
 
@@ -35,16 +35,26 @@ def perdi_mi_mascota():
     return render_template("perdi_mi_mascota.html", mascotas=mascotas)
 
 
+@app.route("/eliminarMascota/<int:id>", methods=["GET", "DELETE"])
+def eliminarMascota(id):
+    try:
+        requests.delete(f"{API_URL}/mascotaBorrar/{id}")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error deleting data: {e}")
+    return redirect(url_for("perdi_mi_mascota"))
+
+
 @app.route("/encontre_una_mascota", methods=["GET", "POST"])
 def encontre_una_mascota():
     if request.method == "POST":
-      
+
         file = request.files["fimage"]
         if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-                imagen_path = f"static/images/{filename}"
-        
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            imagen_path = f"static/images/{filename}"
+
         direccion = request.form.get("fdireccion")
         formulario_data = {
             "nombre": request.form.get("fnombre"),
@@ -56,7 +66,7 @@ def encontre_una_mascota():
             "email": request.form.get("femail"),
             "fecha": request.form.get("fecha"),
             "descripcion": request.form.get("fmessage"),
-            "imagen": imagen_path
+            "imagen": imagen_path,
         }
 
         api_key = "7677b3b3603d4c34bbfc30c063391ca3"
@@ -74,7 +84,7 @@ def encontre_una_mascota():
             print(f"Error al obtener coordenadas: {e}")
             formulario_data["latitud"] = None
             formulario_data["longitud"] = None
-            
+
         try:
             response = requests.post(API_URL + "crear_mascota", json=formulario_data)
             response.raise_for_status()

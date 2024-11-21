@@ -7,7 +7,6 @@ CREATE TABLE mascotas(
     raza varchar(255),
     color varchar(255) NOT NULL,
     edad varchar(255),
-    zona varchar(255) NOT NULL,
     fecha date,
     descripcion varchar(255),
     estado varchar(255),
@@ -17,11 +16,11 @@ CREATE TABLE mascotas(
     PRIMARY KEY (mascotaID)
 );
 
-insert into mascotas (nombre,animal,raza,color,edad,zona,fecha,descripcion,estado,imagen) values ("Fito", "Perro", "Doberman","negro",7,"Caballito","2021-12-01","Perro encontrado","perdida","static/images/perro.jpg");
+insert into mascotas (nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen) values ("Fito", "Perro", "Doberman","negro",7,"2021-12-01","Perro encontrado","perdida","static/images/perro.jpg");
 
-insert into mascotas (nombre,animal,raza,color,edad,zona,fecha,descripcion,estado,imagen) values ("Casper", "Gato", "Siames","marron",2,"Lanus","2024-6-01","Gato encontrado","perdida","static/images/gato.webp");
+insert into mascotas (nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen) values ("Casper", "Gato", "Siames","marron",2,"2024-6-01","Gato encontrado","perdida","static/images/gato.webp");
 
-insert into mascotas (nombre,animal,raza,color,edad,zona,fecha,descripcion,estado,imagen) values ("Peter", "Perro", "Pastor aleman","rubio",12,"Moron","2023-7-08","Perro encontrado","perdida","static/images/perro2.webp");
+insert into mascotas (nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen) values ("Peter", "Perro", "Pastor aleman","rubio",12,"2023-7-08","Perro encontrado","perdida","static/images/perro2.webp");
 
 
 CREATE TABLE personas(

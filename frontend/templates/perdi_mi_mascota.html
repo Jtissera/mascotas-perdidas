@@ -12,6 +12,10 @@
         <div id="grid_container">
             {%for mascota in mascotas %}
             <div class="item">
+                <div id="icono_container">
+                    <a href="{{url_for('eliminarMascota',id=mascota['mascotaID'])}}" id="delete"> </a>
+                    <img id="icono" src="{{url_for('static', filename = 'images/basura.png')}}" alt="basura">
+                </div>
                 <img class="item_image" src="{{mascota.imagen}}" alt = "{{mascota.animal}}">
                 <h3 class="nombre">{{mascota.nombre}}</h3>
                 <h5 class="tipo">{{mascota.animal}}</h5>
