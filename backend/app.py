@@ -86,24 +86,30 @@ def crear_mascota():
         if key not in data:
             return jsonify({"error": f"Falta el dato {key}"}), 400
 
-    query_1 = f"""INSERT INTO mascotas (nombre,animal,raza,color,edad,fecha,descripcion,imagen,latitud,longitud) 
-    VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["fecha"]}','{data["descripcion"]}','{data["imagen"]}','{data["latitud"]}','{data["longitud"]}');"""
-    query_aux = """SELECT LAST_INSERT_ID();"""
-    query_2 = f"""INSERT INTO personas (mascotaID,telefono,email) 
-    VALUES (:mascotaID,'{data["telefono"]}','{data["email"]}');"""
-
     try:
+
+        query_1 = f"""INSERT INTO mascotas (nombre, animal,raza,color,edad,fecha,descripcion,imagen,latitud,longitud) 
+        VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["fecha"]}','{data["descripcion"]}','{data["imagen"]}','{data["latitud"]}','{data["longitud"]}');"""
+
         conn.execute(text(query_1))
-        result = conn.execute(text(query_aux)).fetchall()
-        mascotaID = result[0][0]
-        params = {"mascotaID": mascotaID}
-        conn.execute(text(query_2), params)
+        mascota_id = conn.execute(text("SELECT LAST_INSERT_ID();")).scalar()
+
+        query_2 = """
+        INSERT INTO personas (mascotaID, telefono, email) 
+        VALUES (:mascotaID, :telefono, :email);
+        """
+        conn.execute(
+            text(query_2),
+            {
+                "mascotaID": mascota_id,
+                "telefono": data["telefono"],
+                "email": data["email"],
+            },
+        )
         conn.commit()
 
     except SQLAlchemyError as err:
         print("error", err.__cause__)
-
-    return jsonify({"message": "se a agregado correctamente" + query_1 + query_2}), 201
 
 
 @app.route("/mascotasPorID/<int:mascotaID>", methods=["GET"])
