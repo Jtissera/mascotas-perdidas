@@ -26,7 +26,6 @@ def mascotas():
         WHERE nombre LIKE :filtro 
         OR raza LIKE :filtro 
         OR color LIKE :filtro 
-        OR zona LIKE :filtro 
         OR estado LIKE :filtro
         OR animal LIKE :filtro
     """
@@ -61,7 +60,6 @@ def mascotas():
 
     return jsonify(response), 200
 
-
 @app.route("/crear_mascota", methods=["POST"])
 def crear_mascota():
     conn = set_connection()
@@ -69,28 +67,39 @@ def crear_mascota():
 
     print("Datos recibidos:", data)
 
-    keys = ("nombre","animal","raza","color","edad","telefono",
-    "email","fecha","descripcion","imagen", "latitud", "longitud"
+    keys = ("nombre","animal","raza","color","edad",
+	"telefono","email","fecha","descripcion","imagen","latitud","longitud"
     )
     for key in keys:
         if key not in data:
             return jsonify({"error": f"Falta el dato {key}"}), 400
-
-    query_1 = f"""INSERT INTO mascotas (nombre,animal,raza,color,edad,fecha,descripcion,imagen,latitud,longitud) 
-    VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["fecha"]}','{data["descripcion"]}','{data["imagen"]}','{data["latitud"]}','{data["longitud"]}');"""
-    
-    query_2 = f"""INSERT INTO personas (telefono, email) 
-    VALUES ('{data["telefono"]}','{data["email"]}');"""
-
+        
     try:
+        
+        query_1 = f"""INSERT INTO mascotas (nombre, animal,raza,color,edad,fecha,descripcion,imagen,latitud,longitud) 
+        VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["fecha"]}','{data["descripcion"]}','{data["imagen"]}','{data["latitud"]}','{data["longitud"]}');"""
+    
         conn.execute(text(query_1))
-        conn.execute(text(query_2))
+        mascota_id = conn.execute(text("SELECT LAST_INSERT_ID();")).scalar()
+
+        query_2 = """
+        INSERT INTO personas (mascotaID, telefono, email) 
+        VALUES (:mascotaID, :telefono, :email);
+        """
+        conn.execute(
+            text(query_2),
+            {
+                "mascotaID": mascota_id,
+                "telefono": data["telefono"],
+                "email": data["email"]
+            }
+        )
         conn.commit()
 
     except SQLAlchemyError as err:
         print("error", err.__cause__)
 
-    return jsonify({"message": "se a agregado correctamente" + query_1 + query_2}), 201
+
 
 @app.route("/mascotasPorID/<int:mascotaID>", methods=["GET"])
 def mascotas_por_ID(mascotaID):
