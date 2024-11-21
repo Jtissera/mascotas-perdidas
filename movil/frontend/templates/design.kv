@@ -1,0 +1,691 @@
+#:kivy 2.1.0
+# Indica la versión de Kivy que se está utilizando
+
+
+<CustomTextField@MDTextField>:
+    # Definición de un campo de texto personalizado
+    mode: "rectangle"  # Estilo del campo de texto
+    fill_color: 225/255, 217/255, 209/255, 1  # Color de fondo del campo
+    md_bg_color: 225/255, 217/255, 209/255, 1  # Color de fondo para KivyMD
+    text_color: 95/255, 79/255, 66/255, 1  # Color del texto en el campo
+    font_size: "14sp"  # Tamaño de la fuente
+    multiline: False  # Indica que no se permite texto en múltiples líneas
+
+
+<NavigationBar@MDBoxLayout>:
+    # Barra de navegación personalizada
+    padding: "10dp"  # Espaciado interno
+    spacing: "10dp"  # Espaciado entre los botones
+    adaptive_width: True  # Ajusta el ancho según el contenido
+    pos_hint: {"center_x": .5, "center_y": .5}  # Ubicación de la barra
+
+    # Botón para ir a la pantalla de inicio
+    MDFlatButton:
+        text: "INICIO"
+        theme_text_color: "Custom"  # Personalización del color del texto
+        text_color: 1, 1, 1, 1  # Color blanco
+        on_release: root.parent.parent.parent.navigate("home")
+
+    # Botón para ir a la pantalla de mascotas perdidas
+    MDFlatButton:
+        text: "PERDÍ A MI MASCOTA"
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, 1
+        on_release: root.parent.parent.parent.navigate("lost_pet")
+
+    # Botón para ir a la pantalla de mascotas encontradas
+    MDFlatButton:
+        text: "ENCONTRÉ UNA MASCOTA"
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, 1
+        on_release: root.parent.parent.parent.navigate("found_pet")
+
+    # Botón para ir a la pantalla de cómo funciona la aplicación
+    MDFlatButton:
+        text: "CÓMO FUNCIONA"
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, 1
+        on_release: root.parent.parent.parent.navigate("how_it_works")
+
+    # Botón para ir a la pantalla de más información
+    MDFlatButton:
+        text: "MÁS INFORMACIÓN"
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, 1
+        on_release: root.parent.parent.parent.navigate("more_info")
+
+<BaseScreen>:
+    # Pantalla base que incluye un fondo y opciones generales
+    selected_file_label: self.selected_file_label  # Referencia a una etiqueta de archivo seleccionada
+    md_bg_color: 234/255, 230/255, 223/255, 1  # Color de fondo de la pantalla
+
+    MDBoxLayout:
+        # Caja vertical que organiza elementos en la pantalla
+        orientation: "vertical"  # Disposición de elementos en forma vertical
+        spacing: "10dp"  # Espaciado entre elementos
+
+        MDTopAppBar:
+            # Barra superior de la pantalla
+            title: ""  # Título vacío
+            md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo de la barra
+            specific_text_color: 1, 1, 1, 1  # Color del texto de la barra
+
+
+<HomeScreen>:
+    MDBoxLayout:
+        # Estructura principal de la pantalla de inicio con orientación vertical
+        orientation: "vertical"
+        spacing: "10dp"  # Espaciado entre los elementos del layout
+        padding: "0dp"  # Sin margen interno
+
+        MDTopAppBar:
+            # Barra superior de la pantalla
+            size_hint_y: 0.1  # Proporción de altura respecto a la pantalla
+            height: "80dp"  # Altura específica de la barra
+            md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo de la barra
+            specific_text_color: 1, 1, 1, 1  # Color del texto (blanco)
+            NavigationBar:  # Componente de navegación personalizado
+
+        MDBoxLayout:
+            # Sección principal de la pantalla debajo de la barra superior
+            orientation: "vertical"  # Elementos apilados verticalmente
+            spacing: "20dp"  # Espaciado entre elementos
+            size_hint_y: 0.9  # Ocupa la mayoría del espacio vertical
+            padding: "20dp"  # Margen interno alrededor del contenido
+            
+            MDLabel:
+                # Título principal de la pantalla
+                text: "¡Te ayudamos a encontrar a tu mascota!"
+                halign: "center"  # Texto centrado horizontalmente
+                font_style: "H3"  # Estilo de fuente
+                theme_text_color: "Custom"  # Color personalizado del texto
+                text_color: 95/255, 79/255, 66/255, 1  # Color marrón del texto
+                size_hint_y: None  # Tamaño vertical no escalable
+                height: self.texture_size[1]  # Ajusta la altura al tamaño del texto
+                markup: True  # Permite formateo con etiquetas en el texto
+
+            MDLabel:
+                # Descripción explicativa de la funcionalidad de la app
+                text: "¿Perdiste a tu mascota o encontraste una mascota perdida? Esta aplicación está aquí para ayudar a las mascotas a volver a sus hogares."
+                halign: "center"  # Texto centrado horizontalmente
+                font_style: "Body1"  # Estilo de fuente del cuerpo del texto
+                theme_text_color: "Custom"  # Color personalizado del texto
+                text_color: 95/255, 79/255, 66/255, 1  # Color marrón del texto
+                size_hint_y: None  # Tamaño vertical no escalable
+                height: self.texture_size[1]  # Ajusta la altura al tamaño del texto
+
+            # Agregar la imagen
+            Image:
+                # Imagen decorativa o informativa
+                source: "frontend/static/images/mascota3.webp"  # Ruta a la imagen
+                size_hint_y: None  # Tamaño vertical fijo
+                height: "200dp"  # Altura específica de la imagen
+                allow_stretch: True  # Permite estirar la imagen para ajustarse
+                keep_ratio: True  # Mantiene la relación de aspecto de la imagen
+
+            MDBoxLayout:
+                # Contenedor horizontal para los botones
+                orientation: "horizontal"  # Elementos alineados horizontalmente
+                spacing: "20dp"  # Espaciado entre los botones
+                size_hint_y: None  # Tamaño vertical fijo
+                height: "60dp"  # Altura específica del contenedor
+                pos_hint: {"center_x": 0.5}  # Centra horizontalmente el contenedor
+                
+                MDRaisedButton:
+                    # Botón para reportar una mascota perdida
+                    text: "PERDÍ A MI MASCOTA"
+                    md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo del botón
+                    text_color: 1, 1, 1, 1  # Texto blanco
+                    size_hint_x: None  # Tamaño horizontal fijo
+                    width: "200dp"  # Ancho específico del botón
+                    on_release: root.parent.current = "lost_pet"  # Navega a la pantalla de mascotas perdidas
+                
+                MDRaisedButton:
+                    # Botón para reportar una mascota encontrada
+                    text: "ENCONTRÉ UNA MASCOTA"
+                    md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo del botón
+                    text_color: 1, 1, 1, 1  # Texto blanco
+                    size_hint_x: None  # Tamaño horizontal fijo
+                    width: "200dp"  # Ancho específico del botón
+                    on_release: root.parent.current = "found_pet"  # Navega a la pantalla de mascotas encontradas
+
+
+<LostPetScreen>:
+    MDBoxLayout:
+        # Contenedor principal de la pantalla de "Perdí a mi mascota"
+        orientation: "vertical"  # Los elementos se apilan verticalmente
+        spacing: "10dp"  # Espaciado entre los elementos del layout
+
+        MDTopAppBar:
+            # Barra superior de navegación
+            title: ""  # Sin texto en la barra superior
+            md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo marrón
+            specific_text_color: 1, 1, 1, 1  # Color del texto blanco
+            NavigationBar:  # Barra de navegación personalizada con botones
+
+        MDBoxLayout:
+            # Contenedor principal para los elementos de la pantalla
+            orientation: "vertical"  # Los elementos se apilan verticalmente
+            padding: "20dp"  # Margen interno alrededor del contenido
+            spacing: "10dp"  # Espaciado entre los elementos
+
+            CustomTextField:
+                # Campo de texto personalizado para buscar mascotas
+                hint_text: "Buscar mascota..."  # Texto de sugerencia en el campo
+                size_hint_x: 0.8  # Ancho relativo al tamaño del contenedor
+                pos_hint: {"center_x": .5}  # Centrado horizontalmente
+                on_text: root.filter_pets(self.text)  # Llama a la función para filtrar mascotas al escribir
+
+            ScrollView:
+                # Área con desplazamiento para mostrar una lista de elementos
+                MDGridLayout:
+                    # GridLayout para organizar las mascotas en una cuadrícula
+                    id: pets_grid  # ID único para identificar y manipular este componente en Python
+                    cols: 3  # Número de columnas en la cuadrícula
+                    spacing: "20dp"  # Espaciado entre los elementos de la cuadrícula
+                    padding: "20dp"  # Margen interno alrededor de los elementos
+                    adaptive_height: True  # Ajusta automáticamente la altura al contenido
+
+
+<FoundPetScreen>:
+    MDBoxLayout:
+        # Contenedor principal de la pantalla "Encontré una mascota"
+        orientation: "vertical"  # Los elementos se apilan verticalmente
+        spacing: "10dp"  # Espaciado entre elementos
+
+        MDTopAppBar:
+            # Barra superior con diseño consistente en la aplicación
+            title: ""  # Sin texto en la barra superior
+            md_bg_color: 95/255, 79/255, 66/255, 1  # Fondo marrón
+            specific_text_color: 1, 1, 1, 1  # Texto blanco
+            NavigationBar:  # Barra personalizada con botones de navegación
+
+        MDBoxLayout:
+            # Contenedor para los elementos principales de la pantalla
+            orientation: "vertical"  # Apila elementos verticalmente
+            padding: "20dp"  # Espaciado interno alrededor del contenido
+            spacing: "20dp"  # Espaciado entre elementos
+
+            MDLabel:
+                # Etiqueta con el mensaje para seleccionar ubicación
+                text: "Selecciona la ubicación donde se perdió tu mascota"
+                halign: "left"  # Alineación a la izquierda
+                font_style: "H6"  # Estilo de fuente
+                theme_text_color: "Custom"  # Personalización del color del texto
+                text_color: 95/255, 79/255, 66/255, 1  # Color marrón
+                size_hint_y: None  # Altura fija
+                height: self.texture_size[1]  # Se ajusta al tamaño del texto
+
+            MDRaisedButton:
+                # Botón para abrir Google Maps o el selector de archivos
+                text: "Abrir Google Maps"
+                md_bg_color: 95/255, 79/255, 66/255, 1  # Fondo marrón
+                on_release: root.open_file_chooser()  # Acción al pulsar
+                pos_hint: {"center_x": .5}  # Centrado horizontalmente
+
+            MDBoxLayout:
+                # Contenedor para la entrada de datos y otros elementos
+                orientation: "horizontal"  # Organiza los elementos en fila
+                size_hint_y: 0.8  # Altura proporcional
+                spacing: "20dp"  # Espaciado entre columnas
+
+                MDBoxLayout:
+                    # Columna principal con entradas de datos
+                    orientation: "vertical"  # Organiza elementos en columna
+                    size_hint_x: 0.5  # Ancho relativo al contenedor principal
+                    spacing: "20dp"  # Espaciado entre elementos
+
+                    MDLabel:
+                        # Título para la sección de datos de la mascota
+                        text: "Cargá los datos de la mascota"
+                        halign: "left"
+                        font_style: "H5"
+                        theme_text_color: "Custom"
+                        text_color: 95/255, 79/255, 66/255, 1
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    MDGridLayout:
+                        # Contenedor para las entradas de datos básicas
+                        cols: 2  # Dos columnas
+                        spacing: "10dp"  # Espaciado entre campos
+                        size_hint_y: None
+                        height: self.minimum_height  # Altura ajustada al contenido
+
+                        CustomTextField:
+                            id: raza_field  # ID único para este campo
+                            hint_text: "Raza"  # Texto de sugerencia
+
+                        CustomTextField:
+                            id: color_field
+                            hint_text: "Color"
+
+                        CustomTextField:
+                            id: zona_field
+                            hint_text: "Zona"
+
+                        CustomTextField:
+                            id: telefono_field
+                            hint_text: "Teléfono"
+
+                    CustomTextField:
+                        # Campo para el email
+                        id: email_field
+                        hint_text: "Email"
+                        size_hint_y: None
+                        height: "48dp"  # Altura fija
+
+                    MDTextField:
+                        # Campo de texto para descripciónes adicionales
+                        id: descripcion_field
+                        hint_text: "Descripción"
+                        mode: "rectangle"  # Estilo rectangular
+                        multiline: True  # Permite múltiples líneas
+                        size_hint_y: None
+                        height: "100dp"  # Altura fija
+                        fill_color: 225/255, 217/255, 209/255, 1  # Color de fondo
+
+                    MDBoxLayout:
+                        # Contenedor para la sección de carga de fotos
+                        orientation: "vertical"
+                        size_hint_y: None
+                        height: "100dp"
+                        spacing: "10dp"
+
+                        MDLabel:
+                            # Texto descriptivo para la sección de fotos
+                            text: "Foto de la mascota:"
+                            theme_text_color: "Custom"
+                            text_color: 95/255, 79/255, 66/255, 1
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                        MDLabel:
+                            # Etiqueta que muestra el archivo seleccionado
+                            id: selected_file_label
+                            text: "Ningún archivo seleccionado"
+                            theme_text_color: "Custom"
+                            text_color: 95/255, 79/255, 66/255, 1
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                        MDRaisedButton:
+                            # Botón para seleccionar el archivo de foto
+                            text: "Seleccionar archivo"
+                            md_bg_color: 225/255, 217/255, 209/255, 1  # Fondo claro
+                            text_color: 95/255, 79/255, 66/255, 1  # Texto marrón
+                            size_hint_x: None
+                            width: "200dp"
+                            on_release: root.open_file_chooser()  # Acción al pulsar
+
+                    MDRaisedButton:
+                        # Botón para enviar el formulario
+                        text: "ENVIAR"
+                        md_bg_color: 95/255, 79/255, 66/255, 1  # Fondo marrón
+                        size_hint_x: None
+                        width: "200dp"  # Ancho fijo
+                        pos_hint: {"center_x": .5}  # Centrado horizontalmente
+                        on_release: root.submit_form()  # Acción al pulsar
+
+
+<HowItWorksScreen>:
+    canvas.before:
+        # Configuración del fondo de la pantalla
+        Color:
+            rgba: 0.98, 0.96, 0.95, 1  # Color de fondo en tono claro
+        Rectangle:
+            pos: self.pos  # Posición de la pantalla
+            size: self.size  # Tamaño de la pantalla
+
+    MDBoxLayout:
+        # Layout principal que contiene los elementos de la pantalla
+        orientation: "vertical"  # Los elementos se apilan verticalmente
+        spacing: "15dp"  # Espaciado entre los elementos
+
+        MDTopAppBar:
+            # Barra superior de la aplicación
+            title: ""  # Sin texto en la barra
+            md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo marrón
+            elevation: 2  # Elevación para crear efecto de sombra
+            specific_text_color: 1, 1, 1, 1  # Color del texto en blanco
+            NavigationBar:  # Barra de navegación personalizada
+
+        ScrollView:
+            # Contenedor con desplazamiento para los elementos
+            MDBoxLayout:
+                # Layout que organiza los elementos verticalmente
+                orientation: "vertical"  # Los elementos se apilan verticalmente
+                padding: "25dp"  # Margen interno alrededor del contenido
+                spacing: "25dp"  # Espaciado entre los elementos
+                size_hint_y: None  # Permite que la altura se ajuste según el contenido
+                height: self.minimum_height  # Altura mínima ajustada al contenido
+
+                # Primer bloque de información sobre cómo cargar una mascota perdida
+                MDCard:
+                    orientation: "vertical"  # Los elementos dentro se apilan verticalmente
+                    padding: "20dp"  # Margen interno alrededor del contenido
+                    spacing: "15dp"  # Espaciado entre los elementos
+                    size_hint_y: None  # Altura ajustable
+                    height: self.minimum_height  # Altura mínima
+                    md_bg_color: 1, 1, 1, 1  # Color de fondo blanco
+                    elevation: 1  # Elevación para efecto de sombra
+                    radius: [10, 10, 10, 10]  # Bordes redondeados
+
+                    MDLabel:
+                        # Título de la sección "Cargar una Mascota Perdida"
+                        text: "[b]Cargar una Mascota Perdida[/b]"
+                        markup: True  # Permite el uso de texto con formato
+                        font_style: "H5"  # Estilo de fuente
+                        theme_text_color: "Custom"  # Color de texto personalizado
+                        text_color: 95/255, 79/255, 66/255, 1  # Color marrón
+                        size_hint_y: None  # Altura fija
+                        height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+                    MDLabel:
+                        # Descripción detallada de cómo cargar una mascota perdida
+                        text: "Para cargar una mascota perdida, ingresá los detalles más importantes como:\n\n• Raza: Especificá la raza o una descripción general si es desconocida.\n• Color: Ayudá a los demás a identificarla rápidamente.\n• Ubicación: Indicá el lugar donde fue vista por última vez.\n• Fecha: Indicá la fecha cuando fue vista por última vez.\n• Fotos: Las imágenes claras ayudan mucho a la identificación.\n• Contacto: Dejá un número de teléfono para que los posibles halladores puedan comunicarse con vos."
+                        theme_text_color: "Secondary"  # Color de texto secundario
+                        size_hint_y: None  # Altura ajustable
+                        height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+                # Segundo bloque de información sobre qué hacer si perdiste una mascota
+                MDCard:
+                    orientation: "vertical"  # Los elementos dentro se apilan verticalmente
+                    padding: "20dp"  # Margen interno
+                    spacing: "15dp"  # Espaciado entre los elementos
+                    size_hint_y: None  # Altura ajustable
+                    height: self.minimum_height  # Altura mínima
+                    md_bg_color: 1, 1, 1, 1  # Fondo blanco
+                    elevation: 1  # Sombra
+                    radius: [10, 10, 10, 10]  # Bordes redondeados
+
+                    MDLabel:
+                        text: "[b]Perdí a mi Mascota[/b]"  # Título de la sección
+                        markup: True  # Formato de texto enriquecido
+                        font_style: "H5"  # Estilo de fuente
+                        theme_text_color: "Custom"  # Color de texto personalizado
+                        text_color: 95/255, 79/255, 66/255, 1  # Color marrón
+                        size_hint_y: None  # Altura ajustada
+                        height: self.texture_size[1]  # Ajuste al tamaño del texto
+
+                    MDLabel:
+                        # Descripción para quienes han perdido a su mascota
+                        text: "Si perdiste tu mascota, simplemente ingresá sus datos en la sección de 'Cargar Mascota Perdida'. Asegurate de:\n\n• Actualizar tu ubicación: La información precisa aumenta las probabilidades de encontrarla.\n• Incluir una descripción detallada: Cualquier detalle específico como marcas o particularidades puede ser útil.\n• Revisar otras mascotas encontradas: Tal vez alguien haya visto a tu mascota y cargado su información en el sitio."
+                        theme_text_color: "Secondary"  # Color de texto secundario
+                        size_hint_y: None  # Altura ajustable
+                        height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+                # Tercer bloque de información para quienes han encontrado una mascota
+                MDCard:
+                    orientation: "vertical"  # Los elementos dentro se apilan verticalmente
+                    padding: "20dp"  # Margen interno
+                    spacing: "15dp"  # Espaciado entre los elementos
+                    size_hint_y: None  # Altura ajustable
+                    height: self.minimum_height  # Altura mínima
+                    md_bg_color: 1, 1, 1, 1  # Fondo blanco
+                    elevation: 1  # Sombra
+                    radius: [10, 10, 10, 10]  # Bordes redondeados
+
+                    MDLabel:
+                        text: "[b]Encontré una Mascota[/b]"  # Título de la sección
+                        markup: True  # Texto con formato
+                        font_style: "H5"  # Estilo de fuente
+                        theme_text_color: "Custom"  # Color de texto personalizado
+                        text_color: 95/255, 79/255, 66/255, 1  # Color marrón
+                        size_hint_y: None  # Altura ajustable
+                        height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+                    MDLabel:
+                        # Descripción sobre cómo proceder si alguien encontró una mascota
+                        text: "Si encontraste una mascota, te recomendamos seguir estos pasos:\n\n• Subí una foto clara para que el dueño pueda reconocerla rápidamente.\n• Incluí información relevante: Descripción, raza, color, características físicas y accesorios como collares o placas de identificación.\n• Comunicarse de inmediato: No dudes en dar un número de contacto para facilitar la conexión con el dueño."
+                        theme_text_color: "Secondary"  # Texto secundario
+                        size_hint_y: None  # Altura ajustable
+                        height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+                # Cuarto bloque de preguntas frecuentes (FAQ)
+                MDCard:
+                    orientation: "vertical"  # Los elementos dentro se apilan verticalmente
+                    padding: "20dp"  # Margen interno
+                    spacing: "15dp"  # Espaciado entre los elementos
+                    size_hint_y: None  # Altura ajustable
+                    height: self.minimum_height  # Altura mínima
+                    md_bg_color: 1, 1, 1, 1  # Fondo blanco
+                    elevation: 1  # Sombra
+                    radius: [10, 10, 10, 10]  # Bordes redondeados
+
+                    MDLabel:
+                        text: "[b]FAQs (Preguntas Frecuentes)[/b]"  # Título de la sección de FAQs
+                        markup: True  # Formato de texto enriquecido
+                        font_style: "H5"  # Estilo de fuente
+                        theme_text_color: "Custom"  # Color de texto personalizado
+                        text_color: 95/255, 79/255, 66/255, 1  # Color marrón
+                        size_hint_y: None  # Altura ajustable
+                        height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+                    MDLabel:
+                        # Respuesta a la pregunta de qué datos cargar si se encontró una mascota
+                        text: "[b][color=#927865]¿Qué datos puedo cargar si encontré una mascota?[/color][/b]\nTe sugerimos cargar los siguientes detalles:\n\n• Raza, color y características\n• Foto de la mascota\n• Descripción detallada de la zona donde fue encontrada\n• Fecha de hallazgo\n\nLa información más completa ayudará a la persona que busque su mascota a identificarla rápidamente."
+                        theme_text_color: "Secondary"  # Texto secundario
+                        size_hint_y: None  # Altura ajustable
+                        height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+                    MDLabel:
+                        # Respuesta a la pregunta de qué hacer si no se encuentra la mascota
+                        text: "[b][color=#927865]¿Qué pasa si no encuentro a mi mascota?[/color][/b]\nEn caso de no encontrarla, seguí actualizando la información y asegurate de revisar periódicamente las mascotas que hayan sido encontradas."
+                        theme_text_color: "Secondary"  # Texto secundario
+                        size_hint_y: None  # Altura ajustable
+                        height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+
+<MoreInfoScreen>:
+    canvas.before:
+        # Configuración del fondo de la pantalla
+        Color:
+            rgba: 0.98, 0.96, 0.95, 1  # Fondo crema suave
+        Rectangle:
+            pos: self.pos  # Posición de la pantalla
+            size: self.size  # Tamaño de la pantalla
+
+    MDBoxLayout:
+        # Layout principal que organiza los elementos verticalmente
+        orientation: "vertical"  # Los elementos se apilan verticalmente
+        spacing: "15dp"  # Espaciado entre los elementos
+
+        MDTopAppBar:
+            # Barra superior con fondo personalizado
+            title: ""  # Sin título
+            md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo marrón
+            elevation: 2  # Elevación para efecto de sombra
+            specific_text_color: 1, 1, 1, 1  # Color de texto blanco
+            NavigationBar:  # Barra de navegación personalizada
+
+        ScrollView:
+            # Contenedor con desplazamiento para el contenido
+            MDBoxLayout:
+                orientation: "vertical"  # Elementos apilados verticalmente
+                padding: "25dp"  # Margen interno alrededor del contenido
+                spacing: "25dp"  # Espaciado entre los elementos
+                size_hint_y: None  # Altura ajustable
+                height: self.minimum_height  # Altura mínima ajustada al contenido
+
+                # Primer bloque con la historia de la organización
+                MDCard:
+                    orientation: "vertical"  # Los elementos dentro se apilan verticalmente
+                    padding: "20dp"  # Margen interno
+                    spacing: "15dp"  # Espaciado entre los elementos
+                    size_hint_y: None  # Altura ajustable
+                    height: self.minimum_height  # Altura mínima
+                    md_bg_color: 1, 1, 1, 1  # Fondo blanco
+                    elevation: 1  # Sombra
+                    radius: [10, 10, 10, 10]  # Bordes redondeados
+
+                    MDLabel:
+                        # Título de la sección "Historia"
+                        text: "[b]HISTORIA[/b]"
+                        markup: True  # Habilitar formato de texto enriquecido
+                        theme_text_color: "Custom"  # Color de texto personalizado
+                        text_color: 95/255, 79/255, 66/255, 1  # Color marrón
+                        font_size: "20sp"  # Tamaño de fuente
+
+                    MDLabel:
+                        # Descripción de la historia de la organización
+                        text: "Nuestra organización nació de una simple idea: ayudar a las mascotas a encontrar su camino de regreso a casa. Todo comenzó en 2018, cuando un grupo de amigos se unió para crear una plataforma que conectara personas que han perdido a sus mascotas con quienes las han encontrado. Con el apoyo de voluntarios y amantes de los animales, hemos crecido para convertirnos en un recurso confiable para miles de familias."
+                        theme_text_color: "Secondary"  # Color de texto secundario
+                        size_hint_y: None  # Altura ajustable
+                        height: self.texture_size[1]  # Altura ajustada al tamaño del texto
+
+                # Segundo bloque con la misión y visión de la organización
+                MDCard:
+                    orientation: "vertical"  # Los elementos dentro se apilan verticalmente
+                    padding: "20dp"  # Margen interno
+                    spacing: "15dp"  # Espaciado entre los elementos
+                    size_hint_y: None  # Altura ajustable
+                    height: self.minimum_height  # Altura mínima
+                    md_bg_color: 1, 1, 1, 1  # Fondo blanco
+                    elevation: 1  # Sombra
+                    radius: [10, 10, 10, 10]  # Bordes redondeados
+
+                    MDLabel:
+                        # Título de la sección "Misión y Visión"
+                        text: "[b]MISIÓN Y VISIÓN[/b]"
+                        markup: True  # Habilitar formato de texto enriquecido
+                        theme_text_color: "Custom"  # Color de texto personalizado
+                        text_color: 95/255, 79/255, 66/255, 1  # Color marrón
+                        font_size: "20sp"  # Tamaño de fuente
+
+                    MDLabel:
+                        # Descripción de la misión y visión
+                        text: "[b]Nuestra Misión:[/b]\nBrindar una herramienta accesible y efectiva para que las familias puedan reunirse con sus mascotas. Creemos que cada mascota merece un hogar amoroso y seguro.\n\n[b]Nuestra Visión:[/b]\nSoñamos con un mundo donde ninguna mascota se pierda para siempre y donde todas encuentren su camino de regreso a casa."
+                        markup: True  # Habilitar formato de texto enriquecido
+                        theme_text_color: "Secondary"  # Texto secundario
+                        size_hint_y: None  # Altura ajustable
+                        height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+                # Tercer bloque con los valores de la organización
+                MDCard:
+                    orientation: "vertical"  # Los elementos dentro se apilan verticalmente
+                    padding: "20dp"  # Margen interno
+                    spacing: "15dp"  # Espaciado entre los elementos
+                    size_hint_y: None  # Altura ajustable
+                    height: self.minimum_height  # Altura mínima
+                    md_bg_color: 1, 1, 1, 1  # Fondo blanco
+                    elevation: 1  # Sombra
+                    radius: [10, 10, 10, 10]  # Bordes redondeados
+
+                    MDLabel:
+                        # Título de la sección "Valores"
+                        text: "[b]VALORES[/b]"
+                        markup: True  # Habilitar formato de texto enriquecido
+                        theme_text_color: "Custom"  # Color de texto personalizado
+                        text_color: 95/255, 79/255, 66/255, 1  # Color marrón
+                        font_size: "20sp"  # Tamaño de fuente
+
+                    MDGridLayout:
+                        # Layout en cuadrícula para los valores
+                        cols: 2  # Dos columnas
+                        spacing: "15dp"  # Espaciado entre los elementos
+                        size_hint_y: None  # Altura ajustable
+                        height: self.minimum_height  # Altura mínima
+                        padding: [0, "10dp", 0, 0]  # Padding superior
+
+                        # Cada valor en una tarjeta
+                        MDCard:
+                            orientation: "vertical"  # Elementos apilados verticalmente
+                            padding: "10dp"  # Margen interno
+                            size_hint_y: None  # Altura ajustable
+                            height: "80dp"  # Altura fija
+                            md_bg_color: 0.97, 0.94, 0.92, 1  # Color de fondo suave
+                            radius: [5, 5, 5, 5]  # Bordes redondeados
+
+                            MDLabel:
+                                text: "Empatía"  # Valor
+                                halign: "center"  # Alineación horizontal centrada
+                                theme_text_color: "Custom"  # Color de texto personalizado
+                                text_color: 95/255, 79/255, 66/255, 1  # Color marrón
+                                bold: True  # Texto en negrita
+
+                        # Repetir para los otros valores
+                        MDCard:
+                            orientation: "vertical"
+                            padding: "10dp"
+                            size_hint_y: None
+                            height: "80dp"
+                            md_bg_color: 0.97, 0.94, 0.92, 1
+                            radius: [5, 5, 5, 5]
+
+                            MDLabel:
+                                text: "Compromiso"
+                                halign: "center"
+                                theme_text_color: "Custom"
+                                text_color: 95/255, 79/255, 66/255, 1
+                                bold: True
+
+                        MDCard:
+                            orientation: "vertical"
+                            padding: "10dp"
+                            size_hint_y: None
+                            height: "80dp"
+                            md_bg_color: 0.97, 0.94, 0.92, 1
+                            radius: [5, 5, 5, 5]
+
+                            MDLabel:
+                                text: "Colaboración"
+                                halign: "center"
+                                theme_text_color: "Custom"
+                                text_color: 95/255, 79/255, 66/255, 1
+                                bold: True
+
+                        MDCard:
+                            orientation: "vertical"
+                            padding: "10dp"
+                            size_hint_y: None
+                            height: "80dp"
+                            md_bg_color: 0.97, 0.94, 0.92, 1
+                            radius: [5, 5, 5, 5]
+
+                            MDLabel:
+                                text: "Transparencia"
+                                halign: "center"
+                                theme_text_color: "Custom"
+                                text_color: 95/255, 79/255, 66/255, 1
+                                bold: True
+
+                # Cuarto bloque con el equipo de trabajo
+                MDCard:
+                    orientation: "vertical"  # Los elementos dentro se apilan verticalmente
+                    padding: "20dp"  # Margen interno
+                    spacing: "15dp"  # Espaciado entre los elementos
+                    size_hint_y: None  # Altura ajustable
+                    height: self.minimum_height  # Altura mínima
+                    md_bg_color: 1, 1, 1, 1  # Fondo blanco
+                    elevation: 1  # Sombra
+                    radius: [10, 10, 10, 10]  # Bordes redondeados
+
+                    MDLabel:
+                        # Título de la sección "Nuestro Equipo"
+                        text: "[b]NUESTRO EQUIPO[/b]"
+                        markup: True  # Habilitar formato de texto enriquecido
+                        theme_text_color: "Custom"  # Color de texto personalizado
+                        text_color: 95/255, 79/255, 66/255, 1  # Color marrón
+                        font_size: "20sp"  # Tamaño de fuente
+
+                    MDGridLayout:
+                        # Layout en cuadrícula para mostrar los miembros del equipo
+                        cols: 2  # Dos columnas
+                        spacing: "15dp"  # Espaciado entre los elementos
+                        size_hint_y: None  # Altura ajustable
+                        height: self.minimum_height  # Altura mínima
+                        padding: [0, "10dp", 0, 0]  # Padding superior
+
+                        # Miembros del equipo
+                        MDLabel:
+                            text: "• Alessandro Perez\n• Federico Messil\n• Valentin Outeda"
+                            theme_text_color: "Secondary"  # Texto secundario
+                            size_hint_y: None  # Altura ajustable
+                            height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+                        MDLabel:
+                            text: "• Franco Cecchi\n• José Tissera\n• Andrés Romanello"
+                            theme_text_color: "Secondary"  # Texto secundario
+                            size_hint_y: None  # Altura ajustable
+                            height: self.texture_size[1]  # Ajuste de altura al tamaño del texto

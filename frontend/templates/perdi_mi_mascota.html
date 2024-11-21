@@ -10,17 +10,17 @@
     </div>
     <div id="flex_container">
         <div id="grid_container">
-            {% for mascota in mascotas %}
-                <a href="{{ url_for('mostrar_mascota', mascota_id=mascota.mascotaID) }}" class="item-link">
-                    <div class="item">
-                        <img class="item_image" src="{{ mascota.imagen if mascota.imagen else '/static/images/default.png' }}" alt="{{ mascota.animal }}">
-                        <h3 class="nombre">{{ mascota.nombre }}</h3>
-                        <h5 class="tipo">{{ mascota.animal }}</h5>
-                        <h6 class="raza">{{ mascota.raza }}</h6>
-                        <p class="descripcion">{{ mascota.descripcion }}</p>
-                    </div>
-                </a>
-            {% endfor %}
+            {%for mascota in mascotas %}
+            <a href="{{ url_for('mostrar_mascota', mascota_id=mascota.mascotaID) }}" class="item-link">
+                <div class="item">
+                    <img class="item_image" src="{{mascota.imagen}}" alt = "{{mascota.animal}}">
+                    <h3 class="nombre">{{mascota.nombre}}</h3>
+                    <h5 class="tipo">{{mascota.animal}}</h5>
+                    <h6 class="raza">{{mascota.raza}}</h6>
+                    <p class="descripcion">{{mascota.descripcion}}</p>
+                </div>
+            </a> 
+	        {% endfor %}
         </div>
     </div>
 </div>

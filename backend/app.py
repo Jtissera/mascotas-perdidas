@@ -1,17 +1,21 @@
 from flask import Flask, jsonify, request
-from sqlalchemy import create_engine, text
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import SQLAlchemyError
 
 app = Flask(__name__)
 
+
 def set_connection():
-    engine = create_engine("mysql+mysqlconnector://vouteda:password@localhost:3306/MascotasPerdidasDB")
+    engine = create_engine(
+        "mysql+mysqlconnector://root:Matute0306@localhost:3306/MascotasPerdidasDB"
+    )
+
     connection = engine.connect()
     return connection
 
+
 @app.route("/mascotas", methods=["GET"])
 def mascotas():
-    conn = set_connection()
     nombre_filtro = request.args.get('filtro')
 
     if nombre_filtro:
@@ -23,70 +27,117 @@ def mascotas():
         OR zona LIKE :filtro 
         OR estado LIKE :filtro
         OR animal LIKE :filtro
-        """
+    """
         query_params = {'filtro': f'%{nombre_filtro}%'}
     else:
-        query = "SELECT * FROM mascotas"
-        query_params = {}
+        mascotas = Mascota.query.all()
+
+    response = [
+        {
+            "mascotaID": mascota.mascotaID,
+            "nombre": mascota.nombre,
+            "animal": mascota.animal,
+            "raza": mascota.raza,
+            "color": mascota.color,
+            "edad": mascota.edad,
+            "zona": mascota.zona,
+            "fecha": mascota.fecha,
+            "descripcion": mascota.descripcion,
+            "estado": mascota.estado,
+            "imagen": mascota.imagen
+        }
+        for mascota in mascotas
+    ]
+
+    return jsonify(response), 200
+
+@app.route("/mascota/<int:mascota_id>", methods=["GET"])
+def get_mascota(mascota_id):
+    mascota = Mascota.query.get_or_404(mascota_id)
+
+    response = {
+        "mascotaID": mascota.mascotaID,
+        "nombre": mascota.nombre,
+        "animal": mascota.animal,
+        "raza": mascota.raza,
+        "color": mascota.color,
+        "edad": mascota.edad,
+        "zona": mascota.zona,
+        "fecha": mascota.fecha,
+        "descripcion": mascota.descripcion,
+        "estado": mascota.estado,
+        "imagen": mascota.imagen
+    }
+
+    return jsonify(response)
+
+
+@app.route("/crear_mascota", methods=["POST"])
+def crear_mascota():
+    data = request.get_json()
+
+    print("Datos recibidos:", data)
+
+    keys = ("nombre","animal","raza","color","edad","zona",
+	"telefono","email","fecha","descripcion","imagen","latitud","longitud"
+    )
+    for key in keys:
+        if key not in data:
+            return jsonify({"error": f"Falta el dato {key}"}), 400
+
+    query_1 = f"""INSERT INTO mascotas (nombre, animal,raza,color,edad,zona,fecha,descripcion,imagen,latitud,longitud) 
+    VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["zona"]}','{data["fecha"]}','{data["descripcion"]}','{data["imagen"]}','{data["latitud"]}','{data["longitud"]}');"""
+    
+    query_2 = f"""INSERT INTO personas (telefono, email) 
+    VALUES ('{data["telefono"]}','{data["email"]}');"""
 
     try:
-        result = conn.execute(text(query), query_params)
+        conn.execute(text(query_1))
+        conn.execute(text(query_2))
+        conn.commit()
+
     except SQLAlchemyError as err:
-        print("Database error:", err.__cause__)
-        return jsonify({"error": "Error al consultar las mascotas"}), 500
+        print("error", err.__cause__)
+
+    return jsonify({"message": "se a agregado correctamente" + query_1 + query_2}), 201
+
+@app.route("/mascotasPorID/<int:mascotaID>", methods=["GET"])
+def mascotas_por_ID(mascotaID):
+    conn = set_connection()
+    query = """SELECT nombre,animal,raza,color,edad,zona,fecha,descripcion,estado,imagen, personas.telefono, personas.email 
+               FROM mascotas
+               INNER JOIN personas ON mascotas.mascotaID = personas.mascotaID WHERE mascotas.mascotaID = :mascotaID"""
+
+    try:
+        params = {'mascotaID':mascotaID}
+        result = conn.execute(text(query),params).fetchall()
+    except SQLAlchemyError as err:
+        print("error", err.__cause__)
+
+    conn.close()
+
+    if len(result) == 0:
+        return jsonify({'error': 'no se encontro la mascota'}), 404
 
     response = []
     for row in result:
         response.append(
             {
-                "mascotaID": row[0],
-                "nombre": row[1],
-                "animal": row[2],
-                "raza": row[3],
-                "color": row[4],
-                "edad": row[5],
-                "zona": row[6],
-                "fecha": row[7],
-                "descripcion": row[8],
-                "estado": row[9],
-                "imagen": row[10]
+            	"nombre": row[0],
+            	"animal": row[1],
+            	"raza": row[2],
+            	"color": row[3],
+            	"edad": row[4],
+            	"zona": row[5],
+            	"fecha": row[6],
+            	"descripcion": row[7],
+            	"estado": row[8],
+                "imagen": row[9],
+                "telefono": row[10],
+                "email": row[11],
             }
         )
 
-    conn.close()
-    return jsonify(response), 200
-
-@app.route("/mascota/<int:mascota_id>", methods=["GET"])
-def get_mascota(mascota_id):
-    conn = set_connection()
-
-    query = "SELECT * FROM mascotas WHERE mascotaID = :mascota_id"
-    query_params = {'mascota_id': mascota_id}
-
-    try:
-        result = conn.execute(text(query), query_params).fetchone()
-    except SQLAlchemyError as err:
-        print("Database error:", err.__cause__)
-        return jsonify({"error": "Error al consultar la mascota"}), 500
-
-    if not result:
-        return jsonify({"error": "Mascota no encontrada"}), 404
-
-    response = {
-        "mascotaID": result[0],
-        "nombre": result[1],
-        "animal": result[2],
-        "raza": result[3],
-        "color": result[4],
-        "edad": result[5],
-        "zona": result[6],
-        "fecha": result[7],
-        "descripcion": result[8],
-        "estado": result[9],
-        "imagen": result[10]
-    }
-
-    conn.close()
     return jsonify(response), 200
 
 if __name__ == "__main__":

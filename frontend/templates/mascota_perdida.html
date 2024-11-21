@@ -6,36 +6,36 @@
     <div id="mascota_details">
         
         <div id="mascota_image_container">
-            <img id="mascota_image" src="{{ url_for('static', filename=mascota.foto_url) }}" alt="Foto de la mascota">
+            <img id="mascota_image" src="{{mascota[0].imagen}}" alt="Foto de la mascota">
 
         </div>
 
         <div id="mascota_info_container">
-            <h2 id="mascota_nombre">{{ mascota.nombre }}</h2>
+            <h2 id="mascota_nombre">{{ mascota[0].nombre }}</h2>
             <ul id="mascota_info_list">
                 <li class="mascota_info_item">
                     <span class="mascota_info_icon">🐾</span>
-                    <span class="mascota_info_text"><strong>Animal:</strong> {{ mascota.animal }}</span>
+                    <span class="mascota_info_text"><strong>Animal:</strong> {{ mascota[0].animal }}</span>
                 </li>
                 <li class="mascota_info_item">
                     <span class="mascota_info_icon">🧬</span>
-                    <span class="mascota_info_text"><strong>Raza:</strong> {{ mascota.raza }}</span>
+                    <span class="mascota_info_text"><strong>Raza:</strong> {{ mascota[0].raza }}</span>
                 </li>
                 <li class="mascota_info_item">
                     <span class="mascota_info_icon">📍</span>
-                    <span class="mascota_info_text"><strong>Lugar de pérdida:</strong> {{ mascota.lugar }}</span>
+                    <span class="mascota_info_text"><strong>Lugar de pérdida:</strong> {{ mascota[0].lugar }}</span>
                 </li>
                 <li class="mascota_info_item">
                     <span class="mascota_info_icon">📅</span>
-                    <span class="mascota_info_text"><strong>Fecha de pérdida:</strong> {{ mascota.fecha }}</span>
+                    <span class="mascota_info_text"><strong>Fecha de pérdida:</strong> {{ mascota[0].fecha }}</span>
                 </li>
                 <li class="mascota_info_item">
                     <span class="mascota_info_icon">📝</span>
-                    <span class="mascota_info_text"><strong>Descripción:</strong> {{ mascota.descripcion }}</span>
+                    <span class="mascota_info_text"><strong>Descripción:</strong> {{ mascota[0].descripcion }}</span>
                 </li>
                 <li class="mascota_info_item">
                     <span class="mascota_info_icon">💬</span>
-                    <span class="mascota_info_text"><strong>Otros Comentarios:</strong> {{ mascota.comentarios }}</span>
+                    <span class="mascota_info_text"><strong>Otros Comentarios:</strong>Sin Comentarios</span>
                 </li>
             </ul>
         </div>

@@ -2,7 +2,10 @@ from flask import Flask, render_template, request
 import requests
 
 
-API_URL = 'http://localhost:8080/'
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "webp"}
+UPLOAD_FOLDER = "static/images"
+API_URL = "http://localhost:8080/"
+
 app = Flask(__name__)
 
 
@@ -55,20 +58,6 @@ def encontre_una_mascota():
         return render_template("homeV1.html")
     
     return render_template("encontre_una_mascota.html")
-
-@app.route('/mascota/<int:mascota_id>')
-def mostrar_mascota(mascota_id):
-    try:
-        response = requests.get(f'http://localhost:8080/mascota/{mascota_id}')
-        response.raise_for_status()  
-        mascota = response.json()  
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching data: {e}")
-        return f"Error: {e}", 500  
-
-
-    return render_template('mascota_perdida.html', mascota=mascota)
 
 
 @app.route("/")
