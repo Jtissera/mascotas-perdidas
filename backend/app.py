@@ -1,123 +1,93 @@
 from flask import Flask, jsonify, request
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://vouteda:password@localhost:3306/MascotasPerdidasDB'
-
-db = SQLAlchemy(app)
-
-class Mascota(db.Model):
-    __tablename__ = 'mascotas'
-
-    mascotaID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    nombre = db.Column(db.String(255), nullable=False)
-    animal = db.Column(db.String(255), nullable=False)
-    raza = db.Column(db.String(255), nullable=False)
-    color = db.Column(db.String(255), nullable=False)
-    edad = db.Column(db.String(255), nullable=True)
-    zona = db.Column(db.String(255), nullable=False)
-    fecha = db.Column(db.Date, nullable=True)
-    descripcion = db.Column(db.String(255), nullable=True)
-    estado = db.Column(db.String(255), nullable=True)
-    imagen = db.Column(db.String(255), nullable=True)
-
-    def __repr__(self):
-        return f"<Mascota {self.nombre}>"
-  
+def set_connection():
+    engine = create_engine("mysql+mysqlconnector://vouteda:password@localhost:3306/MascotasPerdidasDB")
+    connection = engine.connect()
+    return connection
 
 @app.route("/mascotas", methods=["GET"])
 def mascotas():
+    conn = set_connection()
     nombre_filtro = request.args.get('filtro')
 
     if nombre_filtro:
-        mascotas = Mascota.query.filter(
-            Mascota.nombre.like(f"%{nombre_filtro}%") |
-            Mascota.raza.like(f"%{nombre_filtro}%") |
-            Mascota.color.like(f"%{nombre_filtro}%") |
-            Mascota.zona.like(f"%{nombre_filtro}%") |
-            Mascota.estado.like(f"%{nombre_filtro}%") |
-            Mascota.animal.like(f"%{nombre_filtro}%")
-        ).all()
+        query = """
+        SELECT * FROM mascotas 
+        WHERE nombre LIKE :filtro 
+        OR raza LIKE :filtro 
+        OR color LIKE :filtro 
+        OR zona LIKE :filtro 
+        OR estado LIKE :filtro
+        OR animal LIKE :filtro
+        """
+        query_params = {'filtro': f'%{nombre_filtro}%'}
     else:
-        mascotas = Mascota.query.all()
+        query = "SELECT * FROM mascotas"
+        query_params = {}
 
-    response = [
-        {
-            "mascotaID": mascota.mascotaID,
-            "nombre": mascota.nombre,
-            "animal": mascota.animal,
-            "raza": mascota.raza,
-            "color": mascota.color,
-            "edad": mascota.edad,
-            "zona": mascota.zona,
-            "fecha": mascota.fecha,
-            "descripcion": mascota.descripcion,
-            "estado": mascota.estado,
-            "imagen": mascota.imagen
-        }
-        for mascota in mascotas
-    ]
+    try:
+        result = conn.execute(text(query), query_params)
+    except SQLAlchemyError as err:
+        print("Database error:", err.__cause__)
+        return jsonify({"error": "Error al consultar las mascotas"}), 500
 
+    response = []
+    for row in result:
+        response.append(
+            {
+                "mascotaID": row[0],
+                "nombre": row[1],
+                "animal": row[2],
+                "raza": row[3],
+                "color": row[4],
+                "edad": row[5],
+                "zona": row[6],
+                "fecha": row[7],
+                "descripcion": row[8],
+                "estado": row[9],
+                "imagen": row[10]
+            }
+        )
+
+    conn.close()
     return jsonify(response), 200
 
 @app.route("/mascota/<int:mascota_id>", methods=["GET"])
 def get_mascota(mascota_id):
-    mascota = Mascota.query.get_or_404(mascota_id)
+    conn = set_connection()
 
-    response = {
-        "mascotaID": mascota.mascotaID,
-        "nombre": mascota.nombre,
-        "animal": mascota.animal,
-        "raza": mascota.raza,
-        "color": mascota.color,
-        "edad": mascota.edad,
-        "zona": mascota.zona,
-        "fecha": mascota.fecha,
-        "descripcion": mascota.descripcion,
-        "estado": mascota.estado,
-        "imagen": mascota.imagen
-    }
-
-    return jsonify(response)
-
-
-@app.route("/crear_mascota", methods=["POST"])
-def crear_mascota():
-    data = request.get_json()
-
-    keys = [
-        "nombre", "animal", "raza", "color", "edad", "zona",
-        "telefono", "email", "fecha", "descripcion", "imagen"
-    ]
-    
-    for key in keys:
-        if key not in data:
-            return jsonify({"error": f"Falta el dato {key}"}), 400
-
-    nueva_mascota = Mascota(
-        nombre=data["nombre"],
-        animal=data["animal"],
-        raza=data["raza"],
-        color=data["color"],
-        edad=data["edad"],
-        zona=data["zona"],
-        fecha=data["fecha"],  
-        descripcion=data["descripcion"],
-        imagen=data["imagen"],
-        estado=data.get("estado", "perdida")  
-    )
+    query = "SELECT * FROM mascotas WHERE mascotaID = :mascota_id"
+    query_params = {'mascota_id': mascota_id}
 
     try:
-        db.session.add(nueva_mascota)
-        db.session.commit()
-
+        result = conn.execute(text(query), query_params).fetchone()
     except SQLAlchemyError as err:
-        db.session.rollback()  
-        return jsonify({"error": f"Database error: {str(err)}"}), 500
+        print("Database error:", err.__cause__)
+        return jsonify({"error": "Error al consultar la mascota"}), 500
 
-    return jsonify({"message": "Mascota creada correctamente!"}), 201
+    if not result:
+        return jsonify({"error": "Mascota no encontrada"}), 404
+
+    response = {
+        "mascotaID": result[0],
+        "nombre": result[1],
+        "animal": result[2],
+        "raza": result[3],
+        "color": result[4],
+        "edad": result[5],
+        "zona": result[6],
+        "fecha": result[7],
+        "descripcion": result[8],
+        "estado": result[9],
+        "imagen": result[10]
+    }
+
+    conn.close()
+    return jsonify(response), 200
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
