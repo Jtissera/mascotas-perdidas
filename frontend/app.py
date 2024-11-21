@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "webp"}
 UPLOAD_FOLDER = "static/images"
 API_URL = "http://localhost:8080/"
+
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
@@ -26,6 +27,25 @@ def perdi_mi_mascota():
 
     try:
         response = requests.get(API_URL + "mascotas", params=params)
+        response.raise_for_status()
+        mascotas = response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        mascotas = []
+
+    return render_template("perdi_mi_mascota.html", mascotas=mascotas)
+
+
+@app.route("/perdi_mi_mascota_filtros")
+def perdi_mi_mascota_filtros():
+    params = {
+        "animal": request.args.getlist("fanimal"),
+        "raza": request.args.getlist("fraza"),
+        "edad": request.args.getlist("fedad"),
+    }
+    print(params)
+    try:
+        response = requests.get(API_URL + "filtro_mascota", params=params)
         response.raise_for_status()
         mascotas = response.json()
     except requests.exceptions.RequestException as e:

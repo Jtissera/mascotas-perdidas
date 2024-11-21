@@ -207,10 +207,13 @@ body{
 #image{
     margin-bottom: 20px;
 }
-#buscador_container{
+#encontre_content {
     display: flex;
-    justify-content: center;
-    margin-top: 40px;
+    flex-direction: column; 
+}
+#buscador_container{
+    margin-bottom: 20px;
+    text-align: center;
 }
 #search{
     background-color:#E1D8CB ;
@@ -222,16 +225,30 @@ body{
     font-size: 18px;
     font-weight: 500;
     padding-left: 20px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 #search:focus{
    outline: none;
    border: 2px solid #706257;
 }
+#filtros{
+    width: 20%; 
+    max-width: 200px;
+    min-width: 200px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    background-color: #6e5b4b; 
+    margin-left: 10px;
+    margin-right: 20px; 
+    border-radius: 8px; 
+}
 #flex_container{
     display: flex;
-    justify-content: center;
-    height: 125vh;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
 }
 #grid_container{
     width: 65vw;
