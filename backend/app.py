@@ -111,6 +111,8 @@ def crear_mascota():
     except SQLAlchemyError as err:
         print("error", err.__cause__)
 
+    return jsonify({"message": "se a agregado correctamente" + query_1 + query_2}), 201
+
 
 @app.route("/mascotasPorID/<int:mascotaID>", methods=["GET"])
 def mascotas_por_ID(mascotaID):
