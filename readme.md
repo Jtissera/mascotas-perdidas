@@ -20,16 +20,20 @@ El desarrollo de la aplicación utiliza diversas tecnologías para crear una exp
 - **Docker**: plataforma que se utiliza para crear contenedores y facilitar el despliegue y la administración del entorno de desarrollo, garantizando que todos los miembros del equipo trabajen en condiciones idénticas.
 - **Azure Studio**: herramienta utilizada para administrar la base de datos y la infraestructura de la aplicación, permitiendo gestionar y visualizar de manera más eficiente los datos almacenados en SQL.
 
+## App Móvil
 
+Además de la versión web, se está desarrollando una aplicación móvil en **Kivy** para facilitar la publicación de información sobre mascotas perdidas directamente desde dispositivos móviles. Esta aplicación permitirá a los usuarios cargar información, incluyendo fotos y geolocalización, lo que mejorará la precisión en la búsqueda y la visibilidad de las mascotas.
 
 ## Estructura del Proyecto
 
 La estructura de carpetas está organizada de la siguiente forma:
 
 - **Frontend/**
+
   - **static/**
     - `style.css`: contiene los estilos de la aplicación.
     - `images/`: carpeta con imágenes utilizadas en la interfaz.
+
   - **templates/**: carpeta con las plantillas HTML para las diferentes vistas de la aplicación.
     - `base.html`: plantilla base que sirve como marco general.
     - `homev1.html`: página principal de la aplicación.
@@ -37,6 +41,19 @@ La estructura de carpetas está organizada de la siguiente forma:
     - `perdi_mi_mascota.html`: vista para la carga de datos de mascotas perdidas.
 
 - **app.py**: archivo principal que configura y ejecuta el servidor Flask, definiendo las rutas para las diferentes páginas.
+
+- **Mobile/**
+
+  - **Frontend/**
+    - **static/**
+      - **images/**
+        - `mascota3.webp`: contiene imagen del inicio de la aplicación.
+    - **templates/**: carpeta con la plantilla Kivy para las diferentes vistas de la aplicación.
+      - `design.kv`: archivo de configuración para la interfaz de usuario.
+
+  - **app_movil.py**: archivo principal de la aplicación móvil, que configura y maneja la lógica para la interfaz de usuario, como la carga de datos de mascotas.
+  
+  - **init_movil.sh**: script de inicialización para configurar el entorno de desarrollo móvil en Kivy.
 
 ## Servicios y Herramientas Utilizadas
 
@@ -74,9 +91,9 @@ Para correr esta aplicación en tu entorno local, necesitas tener instalado:
 
 1. Clona el repositorio de GitHub en tu máquina local:
     ```bash
-    git clone https://github.com/usuario/repo-mascotas-perdidas.git
+    git clone https://github.com/Jtissera/mascotas-perdidas.git
     ```
-   
+
 2. Cambia al directorio del proyecto:
     ```bash
     cd repo-mascotas-perdidas

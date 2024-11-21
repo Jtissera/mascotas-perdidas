@@ -83,7 +83,7 @@ class MainApp(MDApp):
         self.theme_cls.theme_style = "Light"
 
         # Carga el archivo KV desde la carpeta "templates"
-        Builder.load_file("templates/design.kv")
+        Builder.load_file("frontend/templates/design.kv")
 
         # Crea el administrador de pantallas y agrega las pantallas al mismo
         sm = Ui()
