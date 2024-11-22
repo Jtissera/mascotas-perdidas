@@ -8,24 +8,25 @@
         <input type="search" id="search" name="fsearch" placeholder="Buscar">
         </form>
     </div>
+
     <div id="flex_container">
         <div id="grid_container">
-            {%for mascota in mascotas %}
-            <div class="item">
-                <div id="icono_container">
-                    <a href="{{url_for('eliminarMascota',id=mascota['mascotaID'])}}" id="delete"> </a>
-                    <img id="icono" src="{{url_for('static', filename = 'images/basura.png')}}" alt="basura">
-                </div>
-                <img class="item_image" src="{{mascota.imagen}}" alt = "{{mascota.animal}}">
-                <h3 class="nombre">{{mascota.nombre}}</h3>
-                <h5 class="tipo">{{mascota.animal}}</h5>
-                <h6 class="raza">{{mascota.raza}}</h6>
-                <p class="descripcion">{{mascota.descripcion}}</p>
-            </div>
-	    {% endfor %} 
-	    </div>
+             {%for mascota in mascotas %}
+                    <div class="item">
+                        <div id="icono_container">
+                            <a href="{{ url_for('mostrar_mascota', mascota_id=mascota.mascotaID) }}" class="item"> 
+                        </div>
+                        <img class="item_image" src="{{mascota.imagen}}" alt = "{{mascota.animal}}">
+                        <h3 class="nombre">{{mascota.nombre}}</h3>
+                        <h5 class="tipo">{{mascota.animal}}</h5>
+                        <h6 class="raza">{{mascota.raza}}</h6>
+                        <p class="descripcion">{{mascota.descripcion}}</p>
+                        </a>
+                    </div>
+             {% endfor %}
         </div>
     </div>
 </div>
+
 
 {% endblock %}

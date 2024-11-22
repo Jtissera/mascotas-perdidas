@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "webp"}
 UPLOAD_FOLDER = "static/images"
 API_URL = "http://localhost:8080/"
+
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
@@ -13,12 +14,10 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
-@app.route("/index")
-def index():
-    return render_template("index.html")
-
-
+@app.route("/")
+def homeV1():
+    return render_template("homeV1.html")
+  
 @app.route("/perdi_mi_mascota")
 def perdi_mi_mascota():
     mascotas_info = request.args.get("fsearch")
@@ -33,16 +32,6 @@ def perdi_mi_mascota():
         mascotas = []
 
     return render_template("perdi_mi_mascota.html", mascotas=mascotas)
-
-
-@app.route("/eliminarMascota/<int:id>", methods=["GET", "DELETE"])
-def eliminarMascota(id):
-    try:
-        requests.delete(f"{API_URL}/mascotaBorrar/{id}")
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error deleting data: {e}")
-    return redirect(url_for("perdi_mi_mascota"))
 
 
 @app.route("/encontre_una_mascota", methods=["GET", "POST"])
@@ -66,10 +55,10 @@ def encontre_una_mascota():
             "email": request.form.get("femail"),
             "fecha": request.form.get("fecha"),
             "descripcion": request.form.get("fmessage"),
-            "imagen": imagen_path,
+            "imagen": imagen_path
         }
 
-        api_key = "7677b3b3603d4c34bbfc30c063391ca3"
+        api_key = "7677b3b3603d4c34bbfc30c063391ca3" # sin esto no funciona
         try:
             url = f"https://api.opencagedata.com/geocode/v1/json?q={direccion}&key={api_key}"
             response = requests.get(url)
@@ -97,10 +86,20 @@ def encontre_una_mascota():
 
     return render_template("encontre_una_mascota.html")
 
+@app.route('/mascota/<int:mascota_id>')
+def mostrar_mascota(mascota_id):
+    try:
+        response = requests.get(API_URL + f"mascotasPorID/{mascota_id}")
+        response.raise_for_status()  
+        mascota = response.json()  
 
-@app.route("/")
-def homeV1():
-    return render_template("homeV1.html")
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        return f"Error: {e}", 500  
+
+    print(mascota)
+    return render_template('mascota_perdida.html', mascota=mascota)
+
 
 
 @app.route("/faq")
@@ -112,6 +111,14 @@ def faq():
 def info():
     return render_template("info.html")
 
+@app.route("/eliminarMascota/<int:id>", methods=["GET", "DELETE"])
+def eliminarMascota(id):
+    try:
+        requests.delete(f"{API_URL}/mascotaBorrar/{id}")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error deleting data: {e}")
+    return redirect(url_for("perdi_mi_mascota"))
 
 if __name__ == "__main__":
     app.run(debug=True, port=5050)
