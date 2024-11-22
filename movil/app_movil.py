@@ -54,7 +54,7 @@ class HomeScreen(BaseScreen):
 
 
 class LostPetScreen(BaseScreen):
-    pass  # Pantalla para reportar mascotas perdidas
+    pass # Pantalla de mascotas perdidas
 
 
 class FoundPetScreen(BaseScreen):

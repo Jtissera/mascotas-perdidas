@@ -189,143 +189,118 @@
 
 <FoundPetScreen>:
     MDBoxLayout:
-        # Contenedor principal de la pantalla "Encontré una mascota"
-        orientation: "vertical"  # Los elementos se apilan verticalmente
-        spacing: "10dp"  # Espaciado entre elementos
+        orientation: "vertical"
+        spacing: "10dp"
 
         MDTopAppBar:
-            # Barra superior con diseño consistente en la aplicación
-            title: ""  # Sin texto en la barra superior
-            md_bg_color: 95/255, 79/255, 66/255, 1  # Fondo marrón
-            specific_text_color: 1, 1, 1, 1  # Texto blanco
-            NavigationBar:  # Barra personalizada con botones de navegación
+            # Barra superior de la aplicación
+            title: ""  # Sin texto en la barra
+            md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo marrón
+            elevation: 2  # Elevación para crear efecto de sombra
+            specific_text_color: 1, 1, 1, 1  # Color del texto en blanco
+            NavigationBar:  # Barra de navegación personalizada
 
         MDBoxLayout:
-            # Contenedor para los elementos principales de la pantalla
-            orientation: "vertical"  # Apila elementos verticalmente
-            padding: "20dp"  # Espaciado interno alrededor del contenido
-            spacing: "20dp"  # Espaciado entre elementos
+            orientation: "vertical"
+            padding: "20dp"
+            spacing: "20dp"
 
             MDLabel:
-                # Etiqueta con el mensaje para seleccionar ubicación
-                text: "Selecciona la ubicación donde se perdió tu mascota"
-                halign: "left"  # Alineación a la izquierda
-                font_style: "H6"  # Estilo de fuente
-                theme_text_color: "Custom"  # Personalización del color del texto
-                text_color: 95/255, 79/255, 66/255, 1  # Color marrón
-                size_hint_y: None  # Altura fija
-                height: self.texture_size[1]  # Se ajusta al tamaño del texto
+                text: "Cargá los datos de la mascota"
+                halign: "left"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: 95/255, 79/255, 66/255, 1
+                size_hint_y: None
+                height: self.texture_size[1]
 
-            MDRaisedButton:
-                # Botón para abrir Google Maps o el selector de archivos
-                text: "Abrir Google Maps"
-                md_bg_color: 95/255, 79/255, 66/255, 1  # Fondo marrón
-                on_release: root.open_file_chooser()  # Acción al pulsar
-                pos_hint: {"center_x": .5}  # Centrado horizontalmente
+            MDGridLayout:
+                cols: 2  # Dos columnas para organizar los campos
+                spacing: "10dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+                CustomTextField:
+                    id: nombre_field
+                    hint_text: "Nombre de la mascota"
+
+                CustomTextField:
+                    id: animal_field
+                    hint_text: "Animal"
+
+                CustomTextField:
+                    id: raza_field
+                    hint_text: "Raza"
+
+                CustomTextField:
+                    id: color_field
+                    hint_text: "Color"
+
+                CustomTextField:
+                    id: direccion_field
+                    hint_text: "Dirección"
+
+                CustomTextField:
+                    id: telefono_field
+                    hint_text: "Teléfono"
+
+                CustomTextField:
+                    id: email_field
+                    hint_text: "Email"
+
+            MDTextField:
+                id: descripcion_field
+                hint_text: "Descripción"
+                mode: "rectangle"
+                multiline: True
+                size_hint_y: None
+                height: "100dp"
+                fill_color: 225/255, 217/255, 209/255, 1
+            
+            CustomTextField:
+                id: edad_field
+                hint_text: "Edad"
+
+            CustomTextField:
+                id: fecha_field
+                hint_text: "Fecha (DD-MM-YYYY)"
 
             MDBoxLayout:
-                # Contenedor para la entrada de datos y otros elementos
-                orientation: "horizontal"  # Organiza los elementos en fila
-                size_hint_y: 0.8  # Altura proporcional
-                spacing: "20dp"  # Espaciado entre columnas
+                orientation: "vertical"
+                size_hint_y: None
+                height: "100dp"
+                spacing: "10dp"
 
-                MDBoxLayout:
-                    # Columna principal con entradas de datos
-                    orientation: "vertical"  # Organiza elementos en columna
-                    size_hint_x: 0.5  # Ancho relativo al contenedor principal
-                    spacing: "20dp"  # Espaciado entre elementos
+                MDLabel:
+                    text: "Foto de la mascota:"
+                    theme_text_color: "Custom"
+                    text_color: 95/255, 79/255, 66/255, 1
+                    size_hint_y: None
+                    height: self.texture_size[1]
 
-                    MDLabel:
-                        # Título para la sección de datos de la mascota
-                        text: "Cargá los datos de la mascota"
-                        halign: "left"
-                        font_style: "H5"
-                        theme_text_color: "Custom"
-                        text_color: 95/255, 79/255, 66/255, 1
-                        size_hint_y: None
-                        height: self.texture_size[1]
+                MDLabel:
+                    id: selected_file_label
+                    text: "Ningún archivo seleccionado"
+                    theme_text_color: "Custom"
+                    text_color: 95/255, 79/255, 66/255, 1
+                    size_hint_y: None
+                    height: self.texture_size[1]
 
-                    MDGridLayout:
-                        # Contenedor para las entradas de datos básicas
-                        cols: 2  # Dos columnas
-                        spacing: "10dp"  # Espaciado entre campos
-                        size_hint_y: None
-                        height: self.minimum_height  # Altura ajustada al contenido
+                MDRaisedButton:
+                    text: "Seleccionar archivo"
+                    md_bg_color: 95/255, 79/255, 66/255, 1
+                    text_color: 225/255, 217/255, 209/255, 1
+                    size_hint_x: None
+                    width: "200dp"
+                    on_release: root.open_file_chooser()
 
-                        CustomTextField:
-                            id: raza_field  # ID único para este campo
-                            hint_text: "Raza"  # Texto de sugerencia
-
-                        CustomTextField:
-                            id: color_field
-                            hint_text: "Color"
-
-                        CustomTextField:
-                            id: zona_field
-                            hint_text: "Zona"
-
-                        CustomTextField:
-                            id: telefono_field
-                            hint_text: "Teléfono"
-
-                    CustomTextField:
-                        # Campo para el email
-                        id: email_field
-                        hint_text: "Email"
-                        size_hint_y: None
-                        height: "48dp"  # Altura fija
-
-                    MDTextField:
-                        # Campo de texto para descripciónes adicionales
-                        id: descripcion_field
-                        hint_text: "Descripción"
-                        mode: "rectangle"  # Estilo rectangular
-                        multiline: True  # Permite múltiples líneas
-                        size_hint_y: None
-                        height: "100dp"  # Altura fija
-                        fill_color: 225/255, 217/255, 209/255, 1  # Color de fondo
-
-                    MDBoxLayout:
-                        # Contenedor para la sección de carga de fotos
-                        orientation: "vertical"
-                        size_hint_y: None
-                        height: "100dp"
-                        spacing: "10dp"
-
-                        MDLabel:
-                            # Texto descriptivo para la sección de fotos
-                            text: "Foto de la mascota:"
-                            theme_text_color: "Custom"
-                            text_color: 95/255, 79/255, 66/255, 1
-                            size_hint_y: None
-                            height: self.texture_size[1]
-
-                        MDLabel:
-                            # Etiqueta que muestra el archivo seleccionado
-                            id: selected_file_label
-                            text: "Ningún archivo seleccionado"
-                            theme_text_color: "Custom"
-                            text_color: 95/255, 79/255, 66/255, 1
-                            size_hint_y: None
-                            height: self.texture_size[1]
-
-                        MDRaisedButton:
-                            # Botón para seleccionar el archivo de foto
-                            text: "Seleccionar archivo"
-                            md_bg_color: 225/255, 217/255, 209/255, 1  # Fondo claro
-                            text_color: 95/255, 79/255, 66/255, 1  # Texto marrón
-                            size_hint_x: None
-                            width: "200dp"
-                            on_release: root.open_file_chooser()  # Acción al pulsar
-
-                    MDRaisedButton:
-                        # Botón para enviar el formulario
-                        text: "ENVIAR"
-                        md_bg_color: 95/255, 79/255, 66/255, 1  # Fondo marrón
-                        size_hint_x: None
-                        width: "200dp"  # Ancho fijo
-                        pos_hint: {"center_x": .5}  # Centrado horizontalmente
-                        on_release: root.submit_form()  # Acción al pulsar
+            MDRaisedButton:
+                text: "ENVIAR"
+                md_bg_color: 95/255, 79/255, 66/255, 1
+                size_hint_x: None
+                width: "200dp"
+                pos_hint: {"center_x": .5}
+                on_release: root.submit_form()
 
 
 <HowItWorksScreen>:
