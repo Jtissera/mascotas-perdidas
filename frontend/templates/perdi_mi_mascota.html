@@ -10,6 +10,28 @@
     </div>
 
     <div id="flex_container">
+        <div id="filtros">
+            <form action="{{ url_for('perdi_mi_mascota_filtros') }}" method="GET">
+                <h3>Filtrar por:</h3>
+                <h4>Animal</h4>
+                {% for animal in mascotas | map(attribute='animal') | unique %} <!--Sirve para que no aparezcan mas de una vez los filtros-->
+                <label><input type="checkbox" name="fanimal" value="{{animal}}">{{animal}}</label><br>
+                {% endfor %}
+                <h4>Raza</h4>
+                {% for raza in mascotas | map(attribute='raza')| unique %}
+                <label><input type="checkbox" name="fraza" value="{{raza}}">{{raza}}</label><br>
+                {% endfor %}
+                <h4>Edad</h4>
+                {% for edad in mascotas | map(attribute='edad')| unique%}
+                <label><input type="checkbox" name="fedad" value="{{edad}}">{{edad}}</label><br>
+                {% endfor %}
+                <h4>Color</h4>
+                {% for color in mascotas | map(attribute='color')| unique%}
+                <label><input type="checkbox" name="fcolor" value="{{color}}">{{color}}</label><br>
+                {% endfor %}
+                <button type="submit">Aplicar filtros</button>
+            </form>
+        </div> 
         <div id="grid_container">
              {%for mascota in mascotas %}
                     <div class="item">

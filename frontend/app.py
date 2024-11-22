@@ -33,6 +33,24 @@ def perdi_mi_mascota():
 
     return render_template("perdi_mi_mascota.html", mascotas=mascotas)
 
+@app.route("/perdi_mi_mascota_filtros")
+def perdi_mi_mascota_filtros():
+    params = {
+        "animal": request.args.getlist("fanimal"),
+        "raza": request.args.getlist("fraza"),
+        "edad": request.args.getlist("fedad"),
+    }
+    print(params)
+    try:
+        response = requests.get(API_URL + "filtro_mascota", params=params)
+        response.raise_for_status()
+        mascotas = response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        mascotas = []
+
+    return render_template("perdi_mi_mascota.html", mascotas=mascotas)
+
 
 @app.route("/encontre_una_mascota", methods=["GET", "POST"])
 def encontre_una_mascota():

@@ -162,5 +162,63 @@ def mascotaBorrar(mascotaID):
 
     return jsonify({"correcto": "se a eliminado correctamente"}), 200
 
+@app.route("/filtro_mascota", methods=["GET"])
+def mascotas_filtro():
+    conn = set_connection()
+
+    animal = request.args.get("animal", "")
+    raza = request.args.get("raza", "")
+    edad = request.args.get("edad", "")
+    color = request.args.get("color", "")
+    
+    query = "SELECT * FROM mascotas WHERE 1=1"  # '1=1' es una condición siempre verdadera, útil para construir dinámicamente
+    
+    # Crear el diccionario para los parámetros de la consulta
+    query_params = {}
+
+    # Agregar filtros a la consulta solo si tienen un valor
+    if animal:
+        query += " AND animal LIKE :animal"
+        query_params["animal"] = f"%{animal}%"
+    
+    if raza:
+        query += " AND raza LIKE :raza"
+        query_params["raza"] = f"%{raza}%"
+    
+    if edad:
+        query += " AND edad LIKE :edad"
+        query_params["edad"] = f"%{edad}%"
+
+    if color:
+        query += " AND edad LIKE :color"
+        query_params["color"] = f"%{color}%"
+
+
+    try:
+        result = conn.execute(text(query), query_params)
+    except SQLAlchemyError as e:
+        print(f"Error ejecutando la consulta: {e}")
+        return jsonify({"error": "Error en la consulta SQL"}), 500
+
+    response = []
+    for row in result:
+        response.append({
+            "mascotaID": row[0],
+            "nombre": row[1],
+            "animal": row[2],
+            "raza": row[3],
+            "color": row[4],
+            "edad": row[5],
+            "fecha": row[6],
+            "descripcion": row[7],
+            "estado": row[8],
+            "imagen": row[9],
+            "latitud": row[10],
+            "longitud": row[11]
+        })
+
+    
+    return jsonify(response), 200
+    
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
