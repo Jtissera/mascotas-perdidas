@@ -244,9 +244,14 @@
                     id: telefono_field
                     hint_text: "Teléfono"
 
-                CustomTextField:
-                    id: email_field
-                    hint_text: "Email"
+            MDTextField:
+                id: email_field
+                hint_text: "Email"
+                mode: "rectangle"
+                multiline: True
+                size_hint_y: None
+                height: "100dp"
+                fill_color: 225/255, 217/255, 209/255, 1
 
             MDTextField:
                 id: descripcion_field
