@@ -4,40 +4,43 @@
 <div id="encontre_content">
     <div id="buscador_container">
         <form action="{{url_for('perdi_mi_mascota')}}">
-        <label for="search"></label>
-        <input type="search" id="search" name="fsearch" placeholder="Buscar">
+        <label id="label_search" for="search"><input type="search" id="search" name="fsearch" placeholder="Buscar"><img id="lupa" src="{{url_for('static',filename='/images/lupa.png')}}" alt=""></label>
         </form>
     </div>
 
     <div id="flex_container">
         <div id="filtros">
             <form action="{{ url_for('perdi_mi_mascota_filtros') }}" method="GET">
-                <h3>Filtrar por:</h3>
-                <h4>Animal</h4>
+                <h3 id="filtros_por">Filtrar por:</h3>
+                <h4 class="title_filtros">Animal</h4>
                 {% for animal in mascotas | map(attribute='animal') | unique %} <!--Sirve para que no aparezcan mas de una vez los filtros-->
-                <label><input type="checkbox" name="fanimal" value="{{animal}}">{{animal}}</label><br>
+                <label class="input_filtros"><input class="checkbox" type="checkbox" name="fanimal" value="{{animal}}">{{animal}}</label><br>
                 {% endfor %}
-                <h4>Raza</h4>
+                <h4 class="title_filtros">Raza</h4>
                 {% for raza in mascotas | map(attribute='raza')| unique %}
-                <label><input type="checkbox" name="fraza" value="{{raza}}">{{raza}}</label><br>
+                <label class="input_filtros"><input  class="checkbox"type="checkbox" name="fraza" value="{{raza}}">{{raza}}</label><br>
                 {% endfor %}
-                <h4>Edad</h4>
+                <h4 class="title_filtros">Edad</h4>
                 {% for edad in mascotas | map(attribute='edad')| unique%}
-                <label><input type="checkbox" name="fedad" value="{{edad}}">{{edad}}</label><br>
+                <label class="input_filtros"><input class="checkbox" type="checkbox" name="fedad" value="{{edad}}">{{edad}}</label><br>
                 {% endfor %}
-                <h4>Color</h4>
+                <h4 class="title_filtros">Color</h4>
                 {% for color in mascotas | map(attribute='color')| unique%}
-                <label><input type="checkbox" name="fcolor" value="{{color}}">{{color}}</label><br>
+                <label class="input_filtros"><input class="checkbox" type="checkbox" name="fcolor" value="{{color}}">{{color}}</label><br>
                 {% endfor %}
-                <button type="submit">Aplicar filtros</button>
+                <button id="submit_filtros" type="submit">Aplicar filtros</button>
             </form>
         </div> 
         <div id="grid_container">
              {%for mascota in mascotas %}
                     <div class="item">
                         <div id="icono_container">
-                            <a href="{{ url_for('mostrar_mascota', mascota_id=mascota.mascotaID) }}" class="item"> 
+                            <div id="icono_container">
+                                <a href="{{url_for('eliminarMascota',id=mascota['mascotaID'])}}" id="delete"> </a>
+                                <img id="icono" src="{{url_for('static', filename = 'images/basura.png')}}" alt="basura">
+                            </div>
                         </div>
+                        <a id="item_link" href="{{ url_for('mostrar_mascota', mascota_id=mascota.mascotaID) }}" class="item"> 
                         <img class="item_image" src="{{mascota.imagen}}" alt = "{{mascota.animal}}">
                         <h3 class="nombre">{{mascota.nombre}}</h3>
                         <h5 class="tipo">{{mascota.animal}}</h5>
