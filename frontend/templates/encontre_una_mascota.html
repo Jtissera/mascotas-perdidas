@@ -2,21 +2,21 @@
 {% block title%}Encontré una mascota{% endblock %}
 {% block body %}
 <div id="title_perdi_container">
-
     <h1 id="title_perdi">Cargá los datos de la mascota</h1>
 </div>
 
 <div id="content_perdi">
     <div id="form_container">
-        <form id="form" method = "POST" action="{{ url_for('encontre_una_mascota') }}" enctype="multipart/form-data">
+        <form id="form" method="POST" action="{{ url_for('encontre_una_mascota') }}" enctype="multipart/form-data">
             <div id="input_container">
 
-		<div class="label_container">
-                <label for="nombre"></label>
-                <input class="input_perdi left" type="text" id="nombre" name="fnombre" placeholder="Nombre" required>
-                
-                <label for="animal"></label>
-                <input class="input_perdi" type="text" id="animal" name="fanimal" placeholder="Animal" required>
+                <div class="label_container">
+                    <label for="nombre"></label>
+                    <input class="input_perdi left" type="text" id="nombre" name="fnombre" placeholder="Nombre"
+                        required>
+
+                    <label for="animal"></label>
+                    <input class="input_perdi" type="text" id="animal" name="fanimal" placeholder="Animal" required>
                 </div>
 
                 <div class="label_container">
@@ -32,7 +32,7 @@
                     <input class="input_perdi left" type="text" id="zona" name="fdireccion" placeholder="Direccion">
 
                     <label for="telefono"></label>
-                    <input class="input_perdi" type="telephone" id="telefono" name="ftelefono" placeholder="Telefono">
+                    <input class="input_perdi" type="tel" id="telefono" name="ftelefono" placeholder="Telefono">
                 </div>
 
                 <label for="email"></label>
@@ -41,17 +41,17 @@
                 <label for="message"></label>
                 <textarea class="input_perdi" id="message" name="fmessage" placeholder="Descripcion"></textarea>
 
-		        <label for="edad"></label>
+                <label for="edad"></label>
                 <input class="input_perdi" type="text" id="edad" name="fedad" placeholder="Edad">
 
-               
+
                 <label for="fecha"></label>
                 <input class="input_perdi" type="date" id="fecha" name="fecha" required>
 
 
                 <label for="foto">Foto de la mascota:</label>
                 <input type="file" id="image" name="fimage">
-                
+
                 <button id="enviar" type="submit">ENVIAR</button>
             </div>
         </form>
