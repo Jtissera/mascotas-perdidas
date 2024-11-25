@@ -8,52 +8,55 @@
 <div id="content_perdi">
     <div id="form_container">
         <form id="form" method="POST" action="{{ url_for('encontre_una_mascota') }}" enctype="multipart/form-data">
-            <div id="input_container">
+            <fieldset>
+                <legend>Info Mascota</legend>
+                <div id="input_container">
 
-                <div class="label_container">
-                    <label for="nombre"></label>
-                    <input class="input_perdi left" type="text" id="nombre" name="fnombre" placeholder="Nombre"
-                        required>
+                    <div class="label_container">
+                        <label for="nombre"></label>
+                        <input class="input_perdi left" type="text" id="nombre" name="fnombre" placeholder="Nombre"
+                            required>
 
-                    <label for="animal"></label>
-                    <input class="input_perdi" type="text" id="animal" name="fanimal" placeholder="Animal" required>
+                        <label for="animal"></label>
+                        <input class="input_perdi" type="text" id="animal" name="fanimal" placeholder="Animal" required>
+                    </div>
+
+                    <div class="label_container">
+                        <label for="raza"></label>
+                        <input class="input_perdi left" type="text" id="raza" name="fraza" placeholder="Raza">
+
+                        <label for="color"></label>
+                        <input class="input_perdi" type="text" id="color" name="fcolor" placeholder="Color" required>
+                    </div>
+
+                    <div class="label_container">
+                        <label for="zona"></label>
+                        <input class="input_perdi left" type="text" id="zona" name="fdireccion" placeholder="Dirección" required>
+
+                        <label for="telefono"></label>
+                        <input class="input_perdi" type="tel" id="telefono" name="ftelefono" placeholder="Teléfono">
+                    </div>
+
+                    <label for="email"></label>
+                    <input class="input_perdi" type="email" id="email" name="femail" placeholder="Email">
+
+                    <label for="message"></label>
+                    <textarea class="input_perdi" id="message" name="fmessage" placeholder="Descripción" required></textarea>
+
+                    <label for="edad"></label>
+                    <input class="input_perdi" type="text" id="edad" name="fedad" placeholder="Edad">
+
+
+                    <label for="fecha"></label>
+                    <input class="input_perdi" type="date" id="fecha" name="fecha" required>
+
+
+                    <label for="foto">Foto de la mascota:</label>
+                    <input type="file" id="image" name="fimage">
+
+                    <button id="enviar" type="submit">ENVIAR</button>
                 </div>
-
-                <div class="label_container">
-                    <label for="raza"></label>
-                    <input class="input_perdi left" type="text" id="raza" name="fraza" placeholder="Raza">
-
-                    <label for="color"></label>
-                    <input class="input_perdi" type="text" id="color" name="fcolor" placeholder="Color">
-                </div>
-
-                <div class="label_container">
-                    <label for="zona"></label>
-                    <input class="input_perdi left" type="text" id="zona" name="fdireccion" placeholder="Direccion">
-
-                    <label for="telefono"></label>
-                    <input class="input_perdi" type="tel" id="telefono" name="ftelefono" placeholder="Telefono">
-                </div>
-
-                <label for="email"></label>
-                <input class="input_perdi" type="email" id="email" name="femail" placeholder="Email">
-
-                <label for="message"></label>
-                <textarea class="input_perdi" id="message" name="fmessage" placeholder="Descripcion"></textarea>
-
-                <label for="edad"></label>
-                <input class="input_perdi" type="text" id="edad" name="fedad" placeholder="Edad">
-
-
-                <label for="fecha"></label>
-                <input class="input_perdi" type="date" id="fecha" name="fecha" required>
-
-
-                <label for="foto">Foto de la mascota:</label>
-                <input type="file" id="image" name="fimage">
-
-                <button id="enviar" type="submit">ENVIAR</button>
-            </div>
+            </fieldset>
         </form>
     </div>
 </div>
