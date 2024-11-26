@@ -157,10 +157,12 @@
         spacing: "10dp"  # Espaciado entre los elementos del layout
 
         MDTopAppBar:
-            # Barra superior de navegación
-            title: ""  # Sin texto en la barra superior
-            md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo marrón
-            specific_text_color: 1, 1, 1, 1  # Color del texto blanco
+            # Barra superior de la pantalla
+            size_hint_y: 0.1  # Proporción de altura respecto a la pantalla
+            height: "80dp"  # Altura específica de la barra
+            md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo de la barra
+            specific_text_color: 1, 1, 1, 1  # Color del texto (blanco)
+            NavigationBar:  # Componente de navegación personalizado
 
         MDBoxLayout:
             # Contenedor principal para los elementos de la pantalla
@@ -197,13 +199,7 @@
                             text: "Mascota"
                             halign: "center"  # Alineación horizontal del texto
         
-        MDFillRoundFlatButton:
-            text: "Volver al Inicio"
-            size_hint_x: 0.8  # Ancho relativo al contenedor
-            pos_hint: {"center_x": 0.5}  # Centrado horizontalmente
-            md_bg_color: 95/255, 79/255, 66/255, 1  # Color del botón (marrón)
-            text_color: 1, 1, 1, 1  # Color del texto (blanco)
-            on_release: app.root.current = "home"  # Redirige a la pestaña "home"
+        
 
 <FoundPetScreen>:
     MDBoxLayout:
