@@ -1,6 +1,6 @@
 /* * {
     outline: 1px solid red;
-} descomentar para poder ver todos los bordes de los elementos*/
+} */
 
 body {
     background-color: #EAE6DF;
@@ -8,7 +8,7 @@ body {
     margin: 0.25%;
     align-items: center;
     height: 100vh;
-    justify-content: center;
+    justify-content: start;
 }
 
 #navbar {
@@ -55,6 +55,7 @@ body {
     width: 40%;
     margin-right: 150px;
     margin-left: 100px;
+    padding: 10px;
 }
 
 #right_home {
