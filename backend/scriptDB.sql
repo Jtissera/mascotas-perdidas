@@ -16,11 +16,11 @@ CREATE TABLE mascotas(
     PRIMARY KEY (mascotaID)
 );
 
-insert into mascotas (nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen) values ("Fito", "Perro", "Doberman","negro",7,"2021-12-01","Perro encontrado","perdida","static/images/perro.jpg");
+insert into mascotas (nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen,latitud,longitud) values ("Fito", "Perro", "Doberman","negro",7,"2021-12-01","Perro encontrado","perdida","static/images/perro.jpg",-34.498012, -58.489233);
 
-insert into mascotas (nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen) values ("Casper", "Gato", "Siames","marron",2,"2024-6-01","Gato encontrado","perdida","static/images/gato.webp");
+insert into mascotas (nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen,latitud,longitud) values ("Casper", "Gato", "Siames","marron",2,"2024-6-01","Gato encontrado","perdida","static/images/gato.webp",-34.584517, -58.416623);
 
-insert into mascotas (nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen) values ("Peter", "Perro", "Pastor aleman","rubio",12,"2023-7-08","Perro encontrado","perdida","static/images/perro2.webp");
+insert into mascotas (nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen,latitud,longitud) values ("Peter", "Perro", "Pastor aleman","rubio",12,"2023-7-08","Perro encontrado","perdida","static/images/perro2.webp",-34.616507, -58.432268);
 
 
 CREATE TABLE personas(
@@ -32,8 +32,8 @@ CREATE TABLE personas(
     FOREIGN KEY (mascotaID) REFERENCES mascotas(mascotaID)
 );
 
-insert into personas (mascotaID,telefono,email) values (2,312354,"email@deejemplo");
+insert into personas (telefono,email) values (312354,"email@deejemplo");
 
-insert into personas (mascotaID,telefono,email) values (3,5435643,"email@deejemplo");
+insert into personas (telefono,email) values (5435643,"email@deejemplo");
 
-insert into personas (mascotaID,telefono,email) values (1,65479,"email@deejemplo");
+insert into personas (telefono,email) values (65479,"email@deejemplo");

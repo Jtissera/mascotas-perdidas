@@ -30,6 +30,9 @@ def perdi_mi_mascota():
         response = requests.get(API_URL + "mascotas", params=params)
         response.raise_for_status()
         mascotas = response.json()
+        # Ordenar en forma ascendente la barra por caracteristicas
+        mascotas.sort(key=lambda x: (int(x['edad'])))
+
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
         mascotas = []
@@ -43,12 +46,14 @@ def perdi_mi_mascota_filtros():
         "animal": request.args.getlist("fanimal"),
         "raza": request.args.getlist("fraza"),
         "edad": request.args.getlist("fedad"),
+        "color": request.args.getlist("fcolor"),
     }
     print(params)
     try:
         response = requests.get(API_URL + "filtro_mascota", params=params)
         response.raise_for_status()
         mascotas = response.json()
+
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
         mascotas = []
