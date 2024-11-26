@@ -203,7 +203,7 @@ def mascotas_filtro():
         query_params["edad"] = f"%{edad}%"
 
     if color:
-        query += " AND edad LIKE :color"
+        query += " AND color LIKE :color"
         query_params["color"] = f"%{color}%"
 
     try:
