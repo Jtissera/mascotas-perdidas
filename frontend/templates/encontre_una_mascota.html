@@ -1,6 +1,27 @@
 {% extends "base.html" %}
 {% block title%}Encontré una mascota{% endblock %}
 {% block body %}
+
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+            <ul class=errors>
+                {% for msg in errors %}
+                    <li class="errors_li">{{ msg }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+{% with succeses = get_flashed_messages(category_filter=["success"]) %}
+    {% if succeses %}
+        <ul class=success>
+            {% for msg in succeses %}
+                <li class="success_li">{{ msg }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
 <div id="title_perdi_container">
     <h1 id="title_perdi">Cargá los datos de la mascota</h1>
 </div>

@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, jsonify, request, redirect, url_for
+from flask import Flask, flash, render_template, jsonify, request, redirect, url_for
 import requests
 from werkzeug.utils import secure_filename
 
@@ -8,6 +8,7 @@ UPLOAD_FOLDER = "static/images"
 API_URL = "http://localhost:8080/"
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
@@ -65,7 +66,7 @@ def encontre_una_mascota():
             file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
             imagen_path = f"static/images/{filename}"
         else:
-            print("archivo no valido")
+            flash("Archivo no valido.", "error")
             return render_template("encontre_una_mascota.html")
 
         direccion = request.form.get("fdireccion")
@@ -93,6 +94,10 @@ def encontre_una_mascota():
                 formulario_data["latitud"] = data["results"][0]["geometry"]["lat"]
                 formulario_data["longitud"] = data["results"][0]["geometry"]["lng"]
 
+            if not data["results"]:
+                flash("No se encontro la dirección ingresada.", "error")
+                return render_template("encontre_una_mascota.html")
+
         except requests.exceptions.RequestException as e:
             print(f"Error al obtener coordenadas: {e}")
             formulario_data["latitud"] = None
@@ -106,7 +111,8 @@ def encontre_una_mascota():
             print(f"Error al enviar los datos a la API: {e}")
             return jsonify({"error": "Hubo un problema al enviar los datos."}), 500
 
-        return render_template("homeV1.html")
+        flash("La mascota se a cargado correctamente.", "success")
+        return render_template("encontre_una_mascota.html")
 
     return render_template("encontre_una_mascota.html")
 
