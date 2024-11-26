@@ -117,7 +117,7 @@
             # Agregar la imagen
             Image:
                 # Imagen decorativa o informativa
-                source: "frontend/static/images/mascota3.webp"  # Ruta a la imagen
+                source: "front/static/images/mascota3.webp"  # Ruta a la imagen
                 size_hint_y: None  # Tamaño vertical fijo
                 height: "200dp"  # Altura específica de la imagen
                 allow_stretch: True  # Permite estirar la imagen para ajustarse
@@ -161,7 +161,6 @@
             title: ""  # Sin texto en la barra superior
             md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo marrón
             specific_text_color: 1, 1, 1, 1  # Color del texto blanco
-            NavigationBar:  # Barra de navegación personalizada con botones
 
         MDBoxLayout:
             # Contenedor principal para los elementos de la pantalla
@@ -169,8 +168,9 @@
             padding: "20dp"  # Margen interno alrededor del contenido
             spacing: "10dp"  # Espaciado entre los elementos
 
-            CustomTextField:
+            MDTextField:
                 # Campo de texto personalizado para buscar mascotas
+                id: search_field
                 hint_text: "Buscar mascota..."  # Texto de sugerencia en el campo
                 size_hint_x: 0.8  # Ancho relativo al tamaño del contenedor
                 pos_hint: {"center_x": .5}  # Centrado horizontalmente
@@ -180,12 +180,30 @@
                 # Área con desplazamiento para mostrar una lista de elementos
                 MDGridLayout:
                     # GridLayout para organizar las mascotas en una cuadrícula
-                    id: pets_grid  # ID único para identificar y manipular este componente en Python
+                    id: mascotas_grid  # ID único para identificar y manipular este componente en Python
                     cols: 3  # Número de columnas en la cuadrícula
                     spacing: "20dp"  # Espaciado entre los elementos de la cuadrícula
                     padding: "20dp"  # Margen interno alrededor de los elementos
                     adaptive_height: True  # Ajusta automáticamente la altura al contenido
+                    size_hint_y: None
+                    height: self.minimum_height
+                    size_hint_x: None
+                    width: self.parent.width  # Ajusta el ancho del grid
 
+                    MDCard:
+                        size_hint: None, None
+                        size: "200dp", "200dp"
+                        MDLabel:
+                            text: "Mascota"
+                            halign: "center"  # Alineación horizontal del texto
+        
+        MDFillRoundFlatButton:
+            text: "Volver al Inicio"
+            size_hint_x: 0.8  # Ancho relativo al contenedor
+            pos_hint: {"center_x": 0.5}  # Centrado horizontalmente
+            md_bg_color: 95/255, 79/255, 66/255, 1  # Color del botón (marrón)
+            text_color: 1, 1, 1, 1  # Color del texto (blanco)
+            on_release: app.root.current = "home"  # Redirige a la pestaña "home"
 
 <FoundPetScreen>:
     MDBoxLayout:
@@ -306,6 +324,7 @@
                 width: "200dp"
                 pos_hint: {"center_x": .5}
                 on_release: root.submit_form()
+        
 
 
 <HowItWorksScreen>:
@@ -669,3 +688,93 @@
                             theme_text_color: "Secondary"  # Texto secundario
                             size_hint_y: None  # Altura ajustable
                             height: self.texture_size[1]  # Ajuste de altura al tamaño del texto
+
+<PetDetailsScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "20dp"
+        spacing: "10dp"
+        md_bg_color: 234/255, 230/255, 223/255, 1
+        
+        MDTopAppBar:
+            # Barra superior similar a la de la pantalla de "Perdí a mi mascota"
+            title: "Detalles de la Mascota"
+            md_bg_color: 95/255, 79/255, 66/255, 1  # Color de fondo marrón
+            specific_text_color: 1, 1, 1, 1  # Color del texto blanco
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: "20dp"
+            spacing: "10dp"
+
+            # Imagen de la mascota
+            Image:
+                id: animal_imagen
+                size_hint: None, None
+                size: "200dp", "200dp"
+                pos_hint: {"center_x": 0.5}
+
+            # Nombre de la mascota
+            MDLabel:
+                id: animal_nombre
+                text: "Nombre de la mascota"
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Primary"  # Color del texto (puedes ajustarlo si prefieres otro)
+
+            # Animal de la mascota
+            MDLabel:
+                id: animal_animal
+                text: "Descripción de la mascota"
+                halign: "center"
+                theme_text_color: "Secondary"
+
+            # Raza de la mascota
+            MDLabel:
+                id: animal_raza
+                text: "Descripción de la mascota"
+                halign: "center"
+                theme_text_color: "Secondary" 
+
+            # Edad de la mascota
+            MDLabel:
+                id: animal_edad
+                text: "Descripción de la mascota"
+                halign: "center"
+                theme_text_color: "Secondary" 
+
+            # Color de la mascota
+            MDLabel:
+                id: animal_color
+                text: "Descripción de la mascota"
+                halign: "center"
+                theme_text_color: "Secondary" 
+
+            # Fecha de perdida de la mascota
+            MDLabel:
+                id: animal_fecha
+                text: "Descripción de la mascota"
+                halign: "center"
+                theme_text_color: "Secondary"                
+
+
+            # Descripción de la mascota
+            MDLabel:
+                id: animal_descripcion
+                text: "Descripción de la mascota"
+                halign: "center"
+                theme_text_color: "Secondary"
+                
+            # Agregar más información o botones si es necesario, como en la pantalla de mascotas perdidas
+            MDFlatButton:
+                text: "Cerrar"
+                size_hint: None, None
+                size: "120dp", "40dp"
+                pos_hint: {"center_x": 0.5}
+                on_release: app.root.current = "lost_pet"  # Redirige a la pantalla de mascotas perdidas cuando se cierre
+        MapView:
+            id: pet_map
+            zoom: 15  # Nivel de zoom inicial
+            lat: 0    # Coordenadas predeterminadas (reemplazadas dinámicamente)
+            lon: 0
+            size_hint: (1, 0.4)  # Tamaño del mapa (40% de la altura total)
