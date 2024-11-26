@@ -84,6 +84,15 @@ def encontre_una_mascota():
         }
 
         api_key = "7677b3b3603d4c34bbfc30c063391ca3"  # sin esto no funciona
+
+        if not formulario_data["telefono"].isnumeric():
+            flash("Telefono invalido", "error")
+            return render_template("encontre_una_mascota.html")
+
+        if not formulario_data["edad"].isnumeric():
+            flash("Edad invalida", "error")
+            return render_template("encontre_una_mascota.html")
+
         try:
             url = f"https://api.opencagedata.com/geocode/v1/json?q={direccion}&key={api_key}"
             response = requests.get(url)

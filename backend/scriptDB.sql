@@ -6,7 +6,7 @@ CREATE TABLE mascotas(
     animal varchar(255),
     raza varchar(255),
     color varchar(255) NOT NULL,
-    edad varchar(255),
+    edad int,
     fecha date,
     descripcion varchar(255),
     estado varchar(255),
