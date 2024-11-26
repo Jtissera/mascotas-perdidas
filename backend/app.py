@@ -117,7 +117,7 @@ def crear_mascota():
 @app.route("/mascotasPorID/<int:mascotaID>", methods=["GET"])
 def mascotas_por_ID(mascotaID):
     conn = set_connection()
-    query = """SELECT nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen, personas.telefono, personas.email 
+    query = """SELECT nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen,latitud,longitud, personas.telefono, personas.email 
                FROM mascotas
                INNER JOIN personas ON mascotas.mascotaID = personas.mascotaID WHERE mascotas.mascotaID = :mascotaID"""
 
@@ -143,8 +143,10 @@ def mascotas_por_ID(mascotaID):
                 "descripcion": row[6],
                 "estado": row[7],
                 "imagen": row[8],
-                "telefono": row[9],
-                "email": row[10],
+                "latitud": row[9],
+                "longitud": row[10],
+                "telefono": row[11],
+                "email": row[12],
             }
         )
 

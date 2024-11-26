@@ -570,7 +570,10 @@ fieldset {
     font-size: 16px;
     color: #333;
 }
-
+#map {
+    height: 500px; /* Altura del mapa */
+    width: 100%;   /* Ancho completo */
+}
 /* @media only screen and (max-width: 1600px) {
     #left_home {
         width: 50%;
