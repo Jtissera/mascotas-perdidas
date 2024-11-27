@@ -9,7 +9,8 @@ from kivymd.uix.card import MDCard
 from kivy.uix.image import Image
 from kivymd.uix.label import MDLabel
 from kivy.uix.screenmanager import Screen
-from kivy_garden.mapview import MapMarker
+from kivy_garden.mapview import MapMarkerPopup #sirve para aniadir marcadores al mapa
+from kivy.uix.label import Label
 
 
 # Importa herramientas adicionales para funcionalidad y propiedades
@@ -155,12 +156,16 @@ class PetDetailsScreen(Screen):
             map_view.lat = self.pet["latitud"]
             map_view.lon = self.pet["longitud"]
             
-            marker = MapMarker(lat=self.pet["latitud"], lon=self.pet["longitud"])
+            marker = MapMarkerPopup(lat=self.pet["latitud"], lon=self.pet["longitud"]) #crea el marcador de la mascota
+            popup_label = Label(text=self.pet["nombre"], size_hint=(None, None), size=(150, 50), color=(1, 0, 0, 1)) #le da estilos
+            marker.add_widget(popup_label)
+
             map_view.add_widget(marker)
             
     def set_pet_data(self, pet):
         """Establece los datos de la mascota que se mostrarán en la pantalla."""
         self.pet = pet
+
 
 # Clase principal de la aplicación
 class MainApp(MDApp):
