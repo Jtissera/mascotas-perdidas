@@ -35,6 +35,11 @@
                 <label class="input_filtros"><input class="checkbox" type="checkbox" name="fcolor"
                         value="{{color}}">{{color}}</label><br>
                 {% endfor %}
+                <h4 class="title_filtros">Estado</h4>
+                {% for estado in mascotas | map(attribute='estado')| unique%}
+                <label class="input_filtros"><input class="checkbox" type="checkbox" name="festado"
+                        value="{{estado}}">{{estado}}</label><br>
+                {% endfor %}
                 <button id="submit_filtros" type="submit">Aplicar filtros</button>
             </form>
         </div>

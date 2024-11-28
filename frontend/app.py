@@ -47,6 +47,7 @@ def perdi_mi_mascota_filtros():
         "raza": request.args.getlist("fraza"),
         "edad": request.args.getlist("fedad"),
         "color": request.args.getlist("fcolor"),
+        "estado": request.args.getlist("festado")
     }
     print(params)
     try:
@@ -85,6 +86,7 @@ def encontre_una_mascota():
             "email": request.form.get("femail"),
             "fecha": request.form.get("fecha"),
             "descripcion": request.form.get("fmessage"),
+            "estado": request.form.get("festado"),
             "imagen": imagen_path,
         }
 
@@ -114,8 +116,7 @@ def encontre_una_mascota():
 
         except requests.exceptions.RequestException as e:
             print(f"Error al obtener coordenadas: {e}")
-            formulario_data["latitud"] = None
-            formulario_data["longitud"] = None
+            return redirect(url_for('pagina_404'))
 
         try:
             response = requests.post(API_URL + "crear_mascota", json=formulario_data)
@@ -165,6 +166,9 @@ def eliminarMascota(id):
         print(f"Error deleting data: {e}")
     return redirect(url_for("perdi_mi_mascota"))
 
+@app.route('/404')
+def pagina_404():
+    return render_template('404.html'), 404
 
 if __name__ == "__main__":
     app.run(debug=True, port=5050)

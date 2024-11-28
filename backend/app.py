@@ -78,6 +78,7 @@ def crear_mascota():
         "email",
         "fecha",
         "descripcion",
+        "estado",
         "imagen",
         "latitud",
         "longitud",
@@ -88,8 +89,8 @@ def crear_mascota():
 
     try:
 
-        query_1 = f"""INSERT INTO mascotas (nombre, animal,raza,color,edad,fecha,descripcion,imagen,latitud,longitud) 
-        VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["fecha"]}','{data["descripcion"]}','{data["imagen"]}','{data["latitud"]}','{data["longitud"]}');"""
+        query_1 = f"""INSERT INTO mascotas (nombre, animal,raza,color,edad,fecha,descripcion,estado,imagen,latitud,longitud) 
+        VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["fecha"]}','{data["descripcion"]}','{data["estado"]}','{data["imagen"]}','{data["latitud"]}','{data["longitud"]}');"""
 
         conn.execute(text(query_1))
         mascota_id = conn.execute(text("SELECT LAST_INSERT_ID();")).scalar()
@@ -185,6 +186,7 @@ def mascotas_filtro():
     raza = request.args.get("raza", "")
     edad = request.args.get("edad", "")
     color = request.args.get("color", "")
+    estado = request.args.get("estado", "")
 
     query = "SELECT * FROM mascotas WHERE 1=1"  # '1=1' es una condición siempre verdadera, útil para construir dinámicamente
 
@@ -207,6 +209,10 @@ def mascotas_filtro():
     if color:
         query += " AND color LIKE :color"
         query_params["color"] = f"%{color}%"
+    
+    if estado:
+        query += " AND estado LIKE :estado"
+        query_params["estado"] = f"%{estado}%"
 
     try:
         result = conn.execute(text(query), query_params)
