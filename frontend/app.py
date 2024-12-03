@@ -43,13 +43,13 @@ def perdi_mi_mascota():
 @app.route("/perdi_mi_mascota_filtros")
 def perdi_mi_mascota_filtros():
     params = {
-        "animal": request.args.getlist("fanimal"),
-        "raza": request.args.getlist("fraza"),
-        "edad": request.args.getlist("fedad"),
-        "color": request.args.getlist("fcolor"),
-        "estado": request.args.getlist("festado")
+        "animal": request.args.get("fanimal"),
+        "raza": request.args.get("fraza"),
+        "edad": request.args.get("fedad"),
+        "color": request.args.get("fcolor"),
+        "estado": request.args.get("festado")
     }
-    print(params)
+    
     try:
         response = requests.get(API_URL + "filtro_mascota", params=params)
         response.raise_for_status()
@@ -110,7 +110,7 @@ def encontre_una_mascota():
                 formulario_data["latitud"] = data["results"][0]["geometry"]["lat"]
                 formulario_data["longitud"] = data["results"][0]["geometry"]["lng"]
 
-            if not data["results"]:
+            else:
                 flash("No se encontro la dirección ingresada.", "error")
                 return render_template("encontre_una_mascota.html")
 

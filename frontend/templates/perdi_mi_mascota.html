@@ -17,27 +17,27 @@
                 <h4 class="title_filtros">Animal</h4>
                 {% for animal in mascotas | map(attribute='animal') | unique %}
                 <!--Sirve para que no aparezcan mas de una vez los filtros-->
-                <label class="input_filtros"><input class="checkbox" type="checkbox" name="fanimal"
+                <label class="input_filtros"><input class="checkbox" type="radio" name="fanimal"
                         value="{{animal}}">{{animal}}</label><br>
                 {% endfor %}
                 <h4 class="title_filtros">Raza</h4>
                 {% for raza in mascotas | map(attribute='raza')| unique %}
-                <label class="input_filtros"><input class="checkbox" type="checkbox" name="fraza"
+                <label class="input_filtros"><input class="checkbox" type="radio" name="fraza"
                         value="{{raza}}">{{raza}}</label><br>
                 {% endfor %}
                 <h4 class="title_filtros">Edad</h4>
                 {% for edad in mascotas | map(attribute='edad')| unique%}
-                <label class="input_filtros"><input class="checkbox" type="checkbox" name="fedad"
+                <label class="input_filtros"><input class="checkbox" type="radio" name="fedad"
                         value="{{edad}}">{{edad}}</label><br>
                 {% endfor %}
                 <h4 class="title_filtros">Color</h4>
                 {% for color in mascotas | map(attribute='color')| unique%}
-                <label class="input_filtros"><input class="checkbox" type="checkbox" name="fcolor"
+                <label class="input_filtros"><input class="checkbox" type="radio" name="fcolor"
                         value="{{color}}">{{color}}</label><br>
                 {% endfor %}
                 <h4 class="title_filtros">Estado</h4>
                 {% for estado in mascotas | map(attribute='estado')| unique%}
-                <label class="input_filtros"><input class="checkbox" type="checkbox" name="festado"
+                <label class="input_filtros"><input class="checkbox" type="radio" name="festado"
                         value="{{estado}}">{{estado}}</label><br>
                 {% endfor %}
                 <button id="submit_filtros" type="submit">Aplicar filtros</button>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <a id="item_link" href="{{ url_for('mostrar_mascota', mascota_id=mascota.mascotaID) }}" class="item">
-                    <img class="item_image" src="{{mascota.imagen}}" alt="Imagen de la mascota"{{mascota.animal}}">
+                    <img class="item_image" src="{{mascota.imagen}}" alt="Imagen de la mascota">
                     <h3 class="nombre">{{mascota.nombre}}</h3>
                     <h5 class="tipo">{{mascota.animal}}</h5>
                     <h6 class="raza">{{mascota.raza}}</h6>

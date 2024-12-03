@@ -38,7 +38,7 @@
                     <span class="mascota_info_text"><strong>Edad:</strong> {{ mascota[0].edad }}</span>
                 </li>
                 <li class="mascota_info_item">
-                    <span class="mascota_info_icon"></span>
+                    <span class="mascota_info_icon">🔍</span>
                     <span class="mascota_info_text"><strong>Estado:</strong> {{ mascota[0].estado }}</span>
                 </li>
                 <li class="mascota_info_item">
@@ -46,9 +46,13 @@
                     <span class="mascota_info_text"><strong>Descripción:</strong> {{ mascota[0].descripcion }}</span>
                 </li>
                 <li class="mascota_info_item">
-                    <span class="mascota_info_icon">💬</span>
-                    <span class="mascota_info_text"><strong>Otros Comentarios:</strong>Sin Comentarios</span>
+                    <span class="mascota_info_icon">📲</span>
+                    <span class="mascota_info_text"><strong>telefono:</strong>{{mascota[0].telefono}}</span>
                 </li>
+                <li class="mascota_info_item">
+                    <span class="mascota_info_icon">📧</span>
+                    <span class="mascota_info_text"><strong>email:</strong> {{ mascota[0].email }}</span>
+                </li>    
             </ul>
         </div>
         <div id="map"></div>

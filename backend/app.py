@@ -66,7 +66,6 @@ def crear_mascota():
     conn = set_connection()
     data = request.get_json()
 
-    print("Datos recibidos:", data)
 
     keys = (
         "nombre",
@@ -90,23 +89,16 @@ def crear_mascota():
     try:
 
         query_1 = f"""INSERT INTO mascotas (nombre, animal,raza,color,edad,fecha,descripcion,estado,imagen,latitud,longitud) 
-        VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["fecha"]}','{data["descripcion"]}','{data["estado"]}','{data["imagen"]}','{data["latitud"]}','{data["longitud"]}');"""
+        VALUES ('{data["nombre"]}','{data["animal"]}','{data["raza"]}','{data["color"]}','{data["edad"]}','{data["fecha"]}',
+        '{data["descripcion"]}','{data["estado"]}','{data["imagen"]}','{data["latitud"]}','{data["longitud"]}');"""
 
         conn.execute(text(query_1))
         mascota_id = conn.execute(text("SELECT LAST_INSERT_ID();")).scalar()
 
-        query_2 = """
-        INSERT INTO personas (mascotaID, telefono, email) 
-        VALUES (:mascotaID, :telefono, :email);
-        """
-        conn.execute(
-            text(query_2),
-            {
-                "mascotaID": mascota_id,
-                "telefono": data["telefono"],
-                "email": data["email"],
-            },
-        )
+        query_2 = f""" INSERT INTO personas (mascotaID, telefono, email) 
+        VALUES ({mascota_id},'{data["telefono"]}','{data["email"]}');"""
+        
+        conn.execute(text(query_2))
         conn.commit()
 
     except SQLAlchemyError as err:
@@ -120,7 +112,8 @@ def mascotas_por_ID(mascotaID):
     conn = set_connection()
     query = """SELECT nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen,latitud,longitud, personas.telefono, personas.email 
                FROM mascotas
-               INNER JOIN personas ON mascotas.mascotaID = personas.mascotaID WHERE mascotas.mascotaID = :mascotaID"""
+               INNER JOIN personas ON mascotas.mascotaID = personas.mascotaID 
+               WHERE mascotas.mascotaID = :mascotaID"""
 
     try:
         params = {"mascotaID": mascotaID}
@@ -159,7 +152,8 @@ def mascotaBorrar(mascotaID):
     conn = set_connection()
     query = """SELECT nombre,animal,raza,color,edad,fecha,descripcion,estado,imagen,latitud,longitud, personas.telefono, personas.email 
                FROM mascotas
-               INNER JOIN personas ON mascotas.mascotaID = personas.mascotaID WHERE mascotas.mascotaID = :mascotaID"""
+               INNER JOIN personas ON mascotas.mascotaID = personas.mascotaID 
+               WHERE mascotas.mascotaID = :mascotaID"""
     query1 = """DELETE FROM personas WHERE mascotaID = :mascotaID"""
     query2 = """DELETE FROM mascotas WHERE mascotaID = :mascotaID"""
     try:
@@ -195,24 +189,24 @@ def mascotas_filtro():
 
     # Agregar filtros a la consulta solo si tienen un valor
     if animal:
-        query += " AND animal LIKE :animal"
-        query_params["animal"] = f"%{animal}%"
+        query += " AND animal = :animal"
+        query_params["animal"] = animal
 
     if raza:
-        query += " AND raza LIKE :raza"
-        query_params["raza"] = f"%{raza}%"
+        query += " AND raza = :raza"
+        query_params["raza"] = raza
 
     if edad:
         query += " AND edad = :edad"
         query_params["edad"] = edad
 
     if color:
-        query += " AND color LIKE :color"
-        query_params["color"] = f"%{color}%"
+        query += " AND color = :color"
+        query_params["color"] = color
     
     if estado:
-        query += " AND estado LIKE :estado"
-        query_params["estado"] = f"%{estado}%"
+        query += " AND estado = :estado"
+        query_params["estado"] = estado
 
     try:
         result = conn.execute(text(query), query_params)
